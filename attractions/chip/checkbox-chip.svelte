@@ -2,8 +2,8 @@
   /**
    * @event {{ value: string; checked: boolean; nativeEvent: Event }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -64,7 +64,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<label class={classes('input-chip checkbox-chip', _class)}>
+<label class={classes("input-chip checkbox-chip", _class)}>
   <input
     bind:checked
     {value}
@@ -72,21 +72,19 @@
     type="checkbox"
     class={classes(inputClass)}
     {disabled}
-    on:change={e =>
-      dispatch('change', {
+    on:change={(e) =>
+      dispatch("change", {
         value: e.currentTarget.value,
         checked: e.currentTarget.checked,
-        nativeEvent: e,
+        nativeEvent: e
       })}
-    {...$$restProps}
-  />
+    {...$$restProps} />
   <div
     class:small
     class:outline
     class:no-padding={noPadding}
     {title}
-    class={classes('chip', chipClass)}
-  >
+    class={classes("chip", chipClass)}>
     <slot>{value}</slot>
   </div>
 </label>

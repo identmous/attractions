@@ -2,8 +2,8 @@
   /**
    * @event {{ value: string; nativeEvent: Event }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -55,7 +55,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<label class={classes('radio', _class)} {title}>
+<label class={classes("radio", _class)} {title}>
   {#if slotLeft}
     <slot />
   {/if}
@@ -65,10 +65,9 @@
     type="radio"
     class={classes(inputClass)}
     {disabled}
-    on:change={e => dispatch('change', { value, nativeEvent: e })}
-    {...$$restProps}
-  />
-  <div class={classes('selector', selectorClass)} style={selectorStyle} />
+    on:change={(e) => dispatch("change", { value, nativeEvent: e })}
+    {...$$restProps} />
+  <div class={classes("selector", selectorClass)} style={selectorStyle} />
   {#if !slotLeft}
     <slot />
   {/if}

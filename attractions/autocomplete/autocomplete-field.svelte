@@ -5,16 +5,16 @@
    * @slot {{ loadMoreOptions: (click?: CustomEvent<{ nativeEvent: MouseEvent }>) => void }} more-options
    * @event {{ value: Option[] }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import DropdownShell from '../dropdown/dropdown-shell.svelte';
-  import Dropdown from '../dropdown/dropdown.svelte';
-  import Button from '../button/button.svelte';
-  import Loading from '../loading/loading.svelte';
-  import AutocompleteOption from './autocomplete-option.svelte';
-  import MoreHorizontal from './more-horizontal.svelte';
-  import s from '../utils/plural-s.js';
-  import callOnSight from '../utils/call-on-sight.js';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import DropdownShell from "../dropdown/dropdown-shell.svelte";
+  import Dropdown from "../dropdown/dropdown.svelte";
+  import Button from "../button/button.svelte";
+  import Loading from "../loading/loading.svelte";
+  import AutocompleteOption from "./autocomplete-option.svelte";
+  import MoreHorizontal from "./more-horizontal.svelte";
+  import s from "../utils/plural-s.js";
+  import callOnSight from "../utils/call-on-sight.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -46,7 +46,7 @@
    * The current value of the text field. Can be used to control the query programmatically.
    * @type {string}
    */
-  export let searchQuery = '';
+  export let searchQuery = "";
   /**
    * The component used to render a suggestion in the list.
    * Receives two props: `option` – the `Option` object ({ name, details }) and `query` – the current query.
@@ -92,7 +92,7 @@
     }
 
     return generatorState.value.filter(
-      option => selection.find(thisOption => thisOption === option) == null
+      (option) => selection.find((thisOption) => thisOption === option) == null
     );
   }
 
@@ -108,8 +108,8 @@
   function select(option) {
     selection.push(option);
     selection = selection;
-    searchQuery = '';
-    dispatch('change', { value: selection });
+    searchQuery = "";
+    dispatch("change", { value: selection });
     if (selection.length < maxOptions) {
       inputElement.focus();
     } else {
@@ -126,17 +126,15 @@
 </script>
 
 <DropdownShell
-  class={classes('autocomplete-field', _class)}
+  class={classes("autocomplete-field", _class)}
   open={focus}
-  on:change={({ detail }) => (focus = detail.value)}
->
+  on:change={({ detail }) => (focus = detail.value)}>
   <input
     {disabled}
     bind:this={inputElement}
     bind:value={searchQuery}
     on:focus={focusInputElement}
-    {...$$restProps}
-  />
+    {...$$restProps} />
   <Dropdown>
     <div class="shown-on-focus">
       <Button noRipple on:click={() => (focus = false)}>
@@ -176,8 +174,7 @@
                 this={optionComponent}
                 {option}
                 query={searchQuery}
-                on:click={() => select(option)}
-              />
+                on:click={() => select(option)} />
             {/each}
           {/await}
         {/each}
@@ -185,15 +182,10 @@
         {#if moreOptions && optionGenerator != null}
           {#await Promise.all(promises) then _}
             <slot name="more-options" {loadMoreOptions}>
-              <li
-                class="more-options"
-                use:callOnSight={{ callback: loadMoreOptions }}
-              >
+              <li class="more-options" use:callOnSight={{ callback: loadMoreOptions }}>
                 <Button on:click={loadMoreOptions}>
                   <MoreHorizontal />
-                  <slot name="load-more-options-message">
-                    load more options
-                  </slot>
+                  <slot name="load-more-options-message">load more options</slot>
                 </Button>
               </li>
             </slot>

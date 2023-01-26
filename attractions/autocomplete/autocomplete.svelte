@@ -8,16 +8,16 @@
    * @event {{ value: Option[] }} change
    * @extends {'./autocomplete-field.svelte'} AutocompleteFieldProps
    */
-  import { createEventDispatcher } from 'svelte';
-  import Button from '../button/button.svelte';
-  import Chip from '../chip/chip.svelte';
-  import AutocompleteField from './autocomplete-field.svelte';
-  import X from '../dialog/x.svelte';
-  import Loading from '../loading/loading.svelte';
-  import MoreHorizontal from './more-horizontal.svelte';
-  import classes from '../utils/classes.js';
-  import s from '../utils/plural-s.js';
-  import callOnSight from '../utils/call-on-sight.js';
+  import { createEventDispatcher } from "svelte";
+  import Button from "../button/button.svelte";
+  import Chip from "../chip/chip.svelte";
+  import AutocompleteField from "./autocomplete-field.svelte";
+  import X from "../dialog/x.svelte";
+  import Loading from "../loading/loading.svelte";
+  import MoreHorizontal from "./more-horizontal.svelte";
+  import classes from "../utils/classes.js";
+  import s from "../utils/plural-s.js";
+  import callOnSight from "../utils/call-on-sight.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -44,7 +44,7 @@
    * The current value of the text field. Can be used to control the query programmatically.
    * @type {string}
    */
-  export let searchQuery = '';
+  export let searchQuery = "";
   /**
    * Whether to disable the field.
    * @type {boolean}
@@ -54,14 +54,14 @@
   let focus = false;
 
   function deselect(item) {
-    selection = selection.filter(thisItem => thisItem !== item);
-    dispatch('change', { value: selection });
+    selection = selection.filter((thisItem) => thisItem !== item);
+    dispatch("change", { value: selection });
   }
 
   const dispatch = createEventDispatcher();
 </script>
 
-<div class:focus class={classes('autocomplete', _class)} class:disabled>
+<div class:focus class={classes("autocomplete", _class)} class:disabled>
   {#each selection as item}
     <Chip noPadding>
       {item.name}
@@ -78,8 +78,7 @@
     {maxOptions}
     {disabled}
     {...$$restProps}
-    on:change
-  >
+    on:change>
     <slot name="too-many-options" slot="too-many-options">
       <div class="notice">
         Cannot select more than

@@ -2,10 +2,10 @@
   /**
    * @event {{ value: number }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import Button from '../button/button.svelte';
-  import TextField from '../text-field/text-field.svelte';
-  import { classes } from '../utils';
+  import { createEventDispatcher } from "svelte";
+  import Button from "../button/button.svelte";
+  import TextField from "../text-field/text-field.svelte";
+  import { classes } from "../utils";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -78,7 +78,7 @@
       leftInputActive = false;
       rightInputActive = false;
       currentPage = page;
-      dispatch('change', { value: page });
+      dispatch("change", { value: page });
     }
   }
 
@@ -90,9 +90,9 @@
   }
 
   function navigateOnEnter({ detail }) {
-    if (detail.nativeEvent.key === 'Enter') {
+    if (detail.nativeEvent.key === "Enter") {
       tryNavigate();
-      inputValue = '';
+      inputValue = "";
     }
   }
 
@@ -110,7 +110,7 @@
 </script>
 
 {#if pages > 1 || (pages == 1 && showLonePage)}
-  <nav class={classes('pagination', _class)} {...$$restProps}>
+  <nav class={classes("pagination", _class)} {...$$restProps}>
     {#each pageList as buttonValue (buttonValue)}
       {#if buttonValue === leftEllipsisKey}
         {#if leftInputActive}
@@ -122,8 +122,7 @@
             autofocus
             bind:value={inputValue}
             on:blur={tryNavigate}
-            on:keydown={navigateOnEnter}
-          />
+            on:keydown={navigateOnEnter} />
         {:else}
           <Button class="page" neutral on:click={activateLeftInput}>...</Button>
         {/if}
@@ -137,19 +136,15 @@
             autofocus
             bind:value={inputValue}
             on:blur={tryNavigate}
-            on:keydown={navigateOnEnter}
-          />
+            on:keydown={navigateOnEnter} />
         {:else}
-          <Button class="page" neutral on:click={activateRightInput}>
-            ...
-          </Button>
+          <Button class="page" neutral on:click={activateRightInput}>...</Button>
         {/if}
       {:else}
         <Button
           neutral={buttonValue !== currentPage}
-          class={classes('page', buttonValue === currentPage && 'current')}
-          on:click={() => goTo(buttonValue)}
-        >
+          class={classes("page", buttonValue === currentPage && "current")}
+          on:click={() => goTo(buttonValue)}>
           {buttonValue}
         </Button>
       {/if}

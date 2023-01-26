@@ -2,10 +2,10 @@
   /**
    * @event {{ value: File | FileList; nativeEvent: Event }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import Button from '../button/button.svelte';
-  import ripple from '../utils/ripple.js';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import Button from "../button/button.svelte";
+  import ripple from "../utils/ripple.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -44,20 +44,20 @@
 
   function handleOutsideClearing(value) {
     if (value == null && input != null) {
-      input.value = '';
+      input.value = "";
     }
   }
 
   function clearSelection(e) {
     value = multiple ? [] : null;
-    input.value = '';
-    dispatch('change', { value, nativeEvent: e });
+    input.value = "";
+    dispatch("change", { value, nativeEvent: e });
   }
 
   const dispatch = createEventDispatcher();
 </script>
 
-<span class={classes('file-input', _class)} class:vertical>
+<span class={classes("file-input", _class)} class:vertical>
   <label class:disabled class={classes(labelClass)} use:ripple={{ disabled }}>
     <input
       type="file"
@@ -66,8 +66,7 @@
       {multiple}
       {disabled}
       {...$$restProps}
-      on:change={e => dispatch('change', { value, nativeEvent: e })}
-    />
+      on:change={(e) => dispatch("change", { value, nativeEvent: e })} />
     <slot name="select-file-message">
       {#if multiple}
         select files

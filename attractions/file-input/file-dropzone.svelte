@@ -3,13 +3,13 @@
    * @slot {{ wrongType: boolean; dragActive: boolean }} empty-layer
    * @event {{ files: File[]; nativeEvent?: Event }} change
    */
-  import Paperclip from './paperclip.svelte';
-  import Plus from './plus.svelte';
-  import FileTile from './file-tile.svelte';
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
-  import ripple from '../utils/ripple.js';
-  import accepted from '../utils/accepted-file-type.js';
+  import Paperclip from "./paperclip.svelte";
+  import Plus from "./plus.svelte";
+  import FileTile from "./file-tile.svelte";
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
+  import ripple from "../utils/ripple.js";
+  import accepted from "../utils/accepted-file-type.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -58,15 +58,15 @@
   let inputElement;
 
   function checkTypesEarly(e) {
-    wrongType = [...e.dataTransfer.items].some(file => !accepted(accept, file));
+    wrongType = [...e.dataTransfer.items].some((file) => !accepted(accept, file));
   }
 
   async function acceptUpload(e) {
     const incomingFiles = Array.from((e.dataTransfer || e.target).files);
     await Promise.all(
-      incomingFiles.map(async file => {
+      incomingFiles.map(async (file) => {
         try {
-          if (typeof beforeChange === 'function') {
+          if (typeof beforeChange === "function") {
             await beforeChange(file);
           }
         } catch (e) {
@@ -81,22 +81,18 @@
 
     files = files;
     setTimeout(() => (wrongType = false), 1000);
-    dispatch('change', { files, nativeEvent: e });
-    inputElement.value = '';
+    dispatch("change", { files, nativeEvent: e });
+    inputElement.value = "";
     dragActive = false;
   }
 
   function deleteFile({ detail: thatFile }) {
-    files = files.filter(thisFile => thisFile !== thatFile);
-    dispatch('change', { files });
+    files = files.filter((thisFile) => thisFile !== thatFile);
+    dispatch("change", { files });
   }
 
   function blockOnTiles(e) {
-    if (
-      e.target != emptyLayer &&
-      e.target != dropzoneLayer &&
-      e.target != inputElement
-    ) {
+    if (e.target != emptyLayer && e.target != dropzoneLayer && e.target != inputElement) {
       e.preventDefault();
     }
   }
@@ -105,12 +101,11 @@
 </script>
 
 <label
-  class={classes('file-dropzone', _class)}
+  class={classes("file-dropzone", _class)}
   class:has-content={files && files.length !== 0}
   class:wrong-type={wrongType}
   class:disabled={disabled || files.length >= max}
-  on:click={blockOnTiles}
->
+  on:click={blockOnTiles}>
   <input
     type="file"
     multiple
@@ -118,8 +113,7 @@
     bind:this={inputElement}
     {accept}
     disabled={disabled || files.length >= max}
-    {...$$restProps}
-  />
+    {...$$restProps} />
   <div class="empty-layer" bind:this={emptyLayer}>
     <slot name="empty-layer" {wrongType} {dragActive}>
       <Paperclip class="icon" />
@@ -131,9 +125,7 @@
         {:else if dragActive}
           <slot name="release-to-upload-message">release to upload</slot>
         {:else}
-          <slot name="drag-and-drop-message">
-            drag &amp; drop here or click to upload files
-          </slot>
+          <slot name="drag-and-drop-message">drag &amp; drop here or click to upload files</slot>
         {/if}
       </div>
     </slot>
@@ -149,8 +141,7 @@
       wrongType = false;
     }}
     on:drop|preventDefault|stopPropagation={acceptUpload}
-    use:ripple={{ disabled: disabled || files.length >= max }}
-  >
+    use:ripple={{ disabled: disabled || files.length >= max }}>
     {#if files.length < max}
       <slot name="more-icon">
         <Plus class="plus" />

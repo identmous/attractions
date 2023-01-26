@@ -1,5 +1,5 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -11,7 +11,7 @@
   export let hidden = false;
 </script>
 
-<div class={classes('badge', _class)} class:hidden {...$$restProps}>
+<div class={classes("badge", _class)} class:hidden {...$$restProps}>
   <slot />
 </div>
 

@@ -1,6 +1,6 @@
 <!-- Plus icon from the Feather Icons pack: https://feathericons.com/ -->
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -17,8 +17,7 @@
   stroke-width="2"
   stroke-linecap="round"
   stroke-linejoin="round"
-  class={classes(_class)}
->
+  class={classes(_class)}>
   <line x1="12" y1="5" x2="12" y2="19" />
   <line x1="5" y1="12" x2="19" y2="12" />
 </svg>

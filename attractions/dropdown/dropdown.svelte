@@ -1,14 +1,8 @@
 <script>
-  import { getContext } from 'svelte';
-  import classes from '../utils/classes.js';
-  import {
-    HorizontalAlignment,
-    VerticalAlignment,
-  } from './dropdown-alignment.js';
-  import {
-    getDropdownShellBoundaryKey,
-    isDropdownOpenKey,
-  } from './dropdown-context-key';
+  import { getContext } from "svelte";
+  import classes from "../utils/classes.js";
+  import { HorizontalAlignment, VerticalAlignment } from "./dropdown-alignment.js";
+  import { getDropdownShellBoundaryKey, isDropdownOpenKey } from "./dropdown-context-key";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -80,11 +74,9 @@
       const dropdownBound = dropdownElement.getBoundingClientRect();
       const dropdownShellBound = getDropdownShellBoundary();
 
-      isVerticalAlignTop =
-        top || getIsVerticalAlignTop(dropdownBound, dropdownShellBound);
+      isVerticalAlignTop = top || getIsVerticalAlignTop(dropdownBound, dropdownShellBound);
 
-      isHorizontalAlignEnd =
-        right || getIsHorizontalAlignEnd(dropdownBound, dropdownShellBound);
+      isHorizontalAlignEnd = right || getIsHorizontalAlignEnd(dropdownBound, dropdownShellBound);
     }
   }
 </script>
@@ -92,9 +84,8 @@
 <div
   class:right={isHorizontalAlignEnd}
   class:top={isVerticalAlignTop}
-  class={classes('dropdown', _class)}
-  bind:this={dropdownElement}
->
+  class={classes("dropdown", _class)}
+  bind:this={dropdownElement}>
   <slot />
 </div>
 

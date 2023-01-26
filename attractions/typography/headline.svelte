@@ -1,12 +1,12 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
   export { _class as class };
 </script>
 
-<div class={classes('headline', _class)} {...$$restProps}>
+<div class={classes("headline", _class)} {...$$restProps}>
   <slot />
 </div>
 

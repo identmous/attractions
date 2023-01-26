@@ -1,13 +1,8 @@
 <script>
-  import { onMount } from 'svelte';
-  import { Button } from 'attractions';
-  import {
-    CopyIcon,
-    CheckIcon,
-    FileTextIcon,
-    TerminalIcon,
-  } from 'svelte-feather-icons';
-  import { writeText } from 'clipboard-polyfill';
+  import { onMount } from "svelte";
+  import { Button } from "attractions";
+  import { CopyIcon, CheckIcon, FileTextIcon, TerminalIcon } from "svelte-feather-icons";
+  import { writeText } from "clipboard-polyfill";
 
   let self;
   let text = null;

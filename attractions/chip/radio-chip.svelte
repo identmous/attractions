@@ -2,9 +2,9 @@
   /**
    * @event {{ value: string; nativeEvent: Event }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
-  import ripple from '../utils/ripple.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
+  import ripple from "../utils/ripple.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -65,7 +65,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<label class={classes('input-chip radio-chip', _class)}>
+<label class={classes("input-chip radio-chip", _class)}>
   <input
     bind:group
     {value}
@@ -73,17 +73,15 @@
     type="radio"
     class={classes(inputClass)}
     {disabled}
-    on:change={e => dispatch('change', { value, nativeEvent: e })}
-    {...$$restProps}
-  />
+    on:change={(e) => dispatch("change", { value, nativeEvent: e })}
+    {...$$restProps} />
   <div
     class:small
     class:outline
     class:no-padding={noPadding}
     {title}
     use:ripple={{ disabled }}
-    class={classes('chip', chipClass)}
-  >
+    class={classes("chip", chipClass)}>
     <slot>{value}</slot>
   </div>
 </label>

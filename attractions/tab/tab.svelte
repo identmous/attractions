@@ -3,9 +3,9 @@
    * @event {{ value: string; nativeEvent: Event }} change
    * @event {{ nativeEvent: MouseEvent }} click
    */
-  import { createEventDispatcher } from 'svelte';
-  import rippleEffect from '../utils/ripple.js';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import rippleEffect from "../utils/ripple.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -50,7 +50,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<label class={classes('tab', _class)}>
+<label class={classes("tab", _class)}>
   <input
     bind:group
     {value}
@@ -58,14 +58,12 @@
     type="radio"
     class={classes(inputClass)}
     {disabled}
-    on:change={e => dispatch('change', { value, nativeEvent: e })}
-    on:click={e => dispatch('click', { nativeEvent: e })}
-    {...$$restProps}
-  />
+    on:change={(e) => dispatch("change", { value, nativeEvent: e })}
+    on:click={(e) => dispatch("click", { nativeEvent: e })}
+    {...$$restProps} />
   <div
-    class={classes('content', contentClass)}
-    use:rippleEffect={{ disabled: noRipple || disabled }}
-  >
+    class={classes("content", contentClass)}
+    use:rippleEffect={{ disabled: noRipple || disabled }}>
     <slot>{value}</slot>
   </div>
 </label>

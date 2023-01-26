@@ -1,7 +1,7 @@
 <script>
-  import { Button, Breadcrumbs } from 'attractions';
-  import { GithubIcon, HomeIcon } from 'svelte-feather-icons';
-  import segmentToName from 'src/utils/segment-to-name.js';
+  import { Button, Breadcrumbs } from "attractions";
+  import { GithubIcon, HomeIcon } from "svelte-feather-icons";
+  import segmentToName from "src/utils/segment-to-name.js";
 
   export let segment;
 
@@ -14,9 +14,9 @@
     <span class="hide-on-less-tb">Attractions</span>
   </a>
   {#if segment != null}
-    <Breadcrumbs items={[{ href: '/docs' }, { text: segmentToName(segment) }]}>
+    <Breadcrumbs items={[{ href: "/docs" }, { text: segmentToName(segment) }]}>
       <div slot="item" let:item>
-        {#if item.href === '/docs'}
+        {#if item.href === "/docs"}
           <Button href="/docs" round small>
             <HomeIcon size="20" />
           </Button>

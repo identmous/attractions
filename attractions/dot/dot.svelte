@@ -1,5 +1,5 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -33,21 +33,18 @@
   export let small = false;
 
   if (+info + +attention + +danger + +success > 1) {
-    console.warn(
-      'A dot can either be info, attention, danger or success, not several of them'
-    );
+    console.warn("A dot can either be info, attention, danger or success, not several of them");
   }
 </script>
 
 <div
-  class={classes('dot', _class)}
+  class={classes("dot", _class)}
   class:info
   class:attention
   class:success
   class:danger
   class:small
-  {...$$restProps}
-/>
+  {...$$restProps} />
 
 <style src="./dot.scss">
 </style>

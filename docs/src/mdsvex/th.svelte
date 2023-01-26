@@ -1,5 +1,5 @@
 <script>
-  import { Label } from 'attractions';
+  import { Label } from "attractions";
 </script>
 
 <th>

@@ -3,8 +3,8 @@
    * @slot {{ closeCallback: () => void }}
    * @event {{ value: boolean }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -19,7 +19,7 @@
    * @type {boolean}
    */
   export let noClickaway = false;
-  $: dispatch('change', { value: open });
+  $: dispatch("change", { value: open });
 
   function close() {
     open = false;
@@ -29,15 +29,11 @@
 </script>
 
 {#if !noClickaway}
-  <div
-    class:open
-    on:click|self={close}
-    class={classes('modal-overlay', _class)}
-  >
+  <div class:open on:click|self={close} class={classes("modal-overlay", _class)}>
     <slot closeCallback={close} />
   </div>
 {:else}
-  <div class:open class={classes('modal-overlay', _class)}>
+  <div class:open class={classes("modal-overlay", _class)}>
     <slot closeCallback={close} />
   </div>
 {/if}

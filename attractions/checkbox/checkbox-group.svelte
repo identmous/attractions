@@ -3,10 +3,10 @@
    * @event {{ value: string; checked: boolean; nativeEvent: Event }} change
    * @extends {'./checkbox.svelte'} CheckboxProps
    */
-  import classes from '../utils/classes.js';
-  import getColorPickerStyles from '../utils/color-picker-styles.js';
-  import s from '../utils/plural-s.js';
-  import Checkbox from './checkbox.svelte';
+  import classes from "../utils/classes.js";
+  import getColorPickerStyles from "../utils/color-picker-styles.js";
+  import s from "../utils/plural-s.js";
+  import Checkbox from "./checkbox.svelte";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -63,19 +63,14 @@
     // TODO: switch back to `??` after https://github.com/pastelsky/bundlephobia/issues/530 is merged
     maxReachedTooltip || `Can only select ${max} value${s(max)}.`;
 
-  $: currentChecked = items.reduce(
-    (acc, elt) => acc + Number(elt.checked || 0),
-    0
-  );
+  $: currentChecked = items.reduce((acc, elt) => acc + Number(elt.checked || 0), 0);
 
   if (!items || items.length === 0) {
-    console.error('Must have at least one item in the checkbox group');
+    console.error("Must have at least one item in the checkbox group");
   }
 
   if (color && labelClass != null) {
-    console.warn(
-      'labelClass has no effect: labels are not rendered for color checkbox groups'
-    );
+    console.warn("labelClass has no effect: labels are not rendered for color checkbox groups");
   }
 </script>
 
@@ -89,13 +84,12 @@
         value={item.value}
         bind:checked={item.checked}
         disabled={item.disabled || (!item.checked && currentChecked >= max)}
-        class={classes(color && 'colored', checkboxClass)}
+        class={classes(color && "colored", checkboxClass)}
         title={!item.disabled && !item.checked && currentChecked >= max
           ? maxReachedTooltipFinal
           : null}
         on:change
-        {...$$restProps}
-      >
+        {...$$restProps}>
         {#if !color}
           {#if labelClass != null}
             <span class={classes(labelClass)}>

@@ -1,6 +1,6 @@
 <script>
-  import { goto } from '@sapper/app';
-  import { Card } from 'attractions';
+  import { goto } from "@sapper/app";
+  import { Card } from "attractions";
 
   export let icon;
   export let title;

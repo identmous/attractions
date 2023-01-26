@@ -1,6 +1,6 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  import Handle from './handle.svelte';
+  import { createEventDispatcher } from "svelte";
+  import Handle from "./handle.svelte";
   import {
     getPosition,
     stopEvent,
@@ -10,10 +10,10 @@
     calcPercentOfRange,
     getTickValues,
     getSubTickPositions,
-    unnestSingle,
-  } from './utils';
-  import { rangeStyle } from './actions';
-  import classes from '../utils/classes.js';
+    unnestSingle
+  } from "./utils";
+  import { rangeStyle } from "./actions";
+  import classes from "../utils/classes.js";
 
   /**
    * @event {number | [number, number]} change
@@ -56,16 +56,16 @@
    * @type {import('./types').TickConfig}
    */
   export let ticks = {
-    mode: 'none',
+    mode: "none"
   };
   /**
    * @type {import('./types').RangeBehavior}
    */
-  export let rangeBehavior = 'block';
+  export let rangeBehavior = "block";
   /**
    * @type {import('./types').Tooltips}
    */
-  export let tooltips = 'never';
+  export let tooltips = "never";
 
   /**
    * @type {string | null}
@@ -75,7 +75,7 @@
   export { _class as class };
 
   /** @type {[number] | [number, number]} */
-  $: internalValue = typeof value === 'number' ? [value] : value;
+  $: internalValue = typeof value === "number" ? [value] : value;
 
   /**
    * @type {HTMLDivElement}
@@ -88,7 +88,7 @@
   /**
    * @type {'vertical' | 'horizontal'}
    */
-  $: orientation = vertical ? 'vertical' : 'horizontal';
+  $: orientation = vertical ? "vertical" : "horizontal";
   /**
    * @type {number[]}
    */
@@ -97,7 +97,7 @@
    * @type {number[]}
    */
   $: subTicks =
-    ticks.mode !== 'none' && ticks.subDensity
+    ticks.mode !== "none" && ticks.subDensity
       ? getSubTickPositions(ticks, min, max, tickValues)
       : [];
 
@@ -110,7 +110,7 @@
       const pos = getPosition(vertical, e);
       const nextValue = calcValByPos(pos);
       activeHandle = getClosestHandle(nextValue, internalValue);
-      dispatch('focus');
+      dispatch("focus");
     }
   }
 
@@ -156,9 +156,7 @@
    */
   function calcValue(offset) {
     const ratio = Math.max(offset, 0) / getSliderLength();
-    const value = vertical
-      ? (1 - ratio) * (max - min) + min
-      : ratio * (max - min) + min;
+    const value = vertical ? (1 - ratio) * (max - min) + min : ratio * (max - min) + min;
     return value;
   }
 
@@ -197,23 +195,21 @@
     const next = [...internalValue];
     next[index] = nextValue;
     let skip = false;
-    if (internalValue.length > 1 && rangeBehavior !== 'free') {
+    if (internalValue.length > 1 && rangeBehavior !== "free") {
       next.forEach((handle, handleIndex) => {
         if (handleIndex === index) {
           return;
         }
-        const direction = handle < value[index] ? '<-' : '->';
+        const direction = handle < value[index] ? "<-" : "->";
         const willCrossOver =
-          direction === '<-'
-            ? handle => handle >= nextValue
-            : handle => handle <= nextValue;
-        if (rangeBehavior === 'push' && willCrossOver(handle)) {
-          if (direction === '<-') {
+          direction === "<-" ? (handle) => handle >= nextValue : (handle) => handle <= nextValue;
+        if (rangeBehavior === "push" && willCrossOver(handle)) {
+          if (direction === "<-") {
             next[handleIndex] = next[index] - 1;
           } else {
             next[handleIndex] = next[index] + 1;
           }
-        } else if (rangeBehavior === 'block' && willCrossOver(handle)) {
+        } else if (rangeBehavior === "block" && willCrossOver(handle)) {
           skip = true;
         }
       });
@@ -221,7 +217,7 @@
     if (!skip) {
       internalValue = next;
       value = unnestSingle(internalValue);
-      dispatch('change', value);
+      dispatch("change", value);
     }
   }
 
@@ -234,7 +230,7 @@
       if (el === slider || slider.contains(/** @type {HTMLElement} */ (el))) {
         onMove(e);
       }
-      dispatch('blur');
+      dispatch("blur");
       sliderActive = false;
     }
   }
@@ -248,34 +244,34 @@
     }
     let delta = 0;
     switch (e.key) {
-      case 'Up': // IE/Edge specific
-      case 'ArrowUp':
-      case 'Right': // IE/Edge specific
-      case 'ArrowRight':
+      case "Up": // IE/Edge specific
+      case "ArrowUp":
+      case "Right": // IE/Edge specific
+      case "ArrowRight":
         delta = step;
         break;
-      case 'Down': // IE/Edge specific
-      case 'ArrowDown':
-      case 'Left': // IE/Edge specific
-      case 'ArrowLeft':
+      case "Down": // IE/Edge specific
+      case "ArrowDown":
+      case "Left": // IE/Edge specific
+      case "ArrowLeft":
         delta = -step;
         break;
-      case 'End':
+      case "End":
         delta = max - internalValue[activeHandle];
         break;
-      case 'Home':
+      case "Home":
         delta = min - internalValue[activeHandle];
         break;
-      case 'PageUp':
+      case "PageUp":
         delta = step * 2;
         break;
-      case 'PageDown':
+      case "PageDown":
         delta = -step * 2;
         break;
     }
     const move = ensureValueInRange(internalValue[activeHandle] + delta, {
       min,
-      max,
+      max
     });
     moveHandle(activeHandle, move);
     stopEvent(e);
@@ -295,8 +291,7 @@
   on:keydown={onKeyDown}
   class:slider-active={sliderActive}
   class:slider-disabled={disabled}
-  {...$$restProps}
->
+  {...$$restProps}>
   <div class={`rail rail-${orientation}`} class:rail-disabled={disabled}>
     <slot name="rail-content" />
   </div>
@@ -308,14 +303,12 @@
       {vertical}
       {disabled}
       active={activeHandle === index}
-      on:focus={() => (activeHandle = index)}
-    >
+      on:focus={() => (activeHandle = index)}>
       <div slot="tooltips" let:value let:canShowActiveTooltip>
-        {#if tooltips === 'always' || (tooltips === 'active' && canShowActiveTooltip)}
+        {#if tooltips === "always" || (tooltips === "active" && canShowActiveTooltip)}
           <div
             class={`handle-tooltip handle-tooltip-${orientation}`}
-            class:handle-tooltip-disabled={disabled}
-          >
+            class:handle-tooltip-disabled={disabled}>
             <div class="handle-tooltip-content">
               <slot name="tooltip-content" {value}>
                 {value}
@@ -329,21 +322,16 @@
   <div
     class={`range-selection range-selection-${orientation}`}
     class:range-selection-disabled={disabled}
-    use:rangeStyle={{ value: internalValue, vertical, min, max }}
-  />
+    use:rangeStyle={{ value: internalValue, vertical, min, max }} />
   {#each tickValues as tick}
     <span
       class={`tick tick-${orientation}`}
       class:tick-disabled={disabled}
       style="{vertical ? 'bottom' : 'left'}: {calcPercentOfRange(tick, {
         min,
-        max,
-      })}%;"
-    >
-      <span
-        class={`tick-value tick-value-${orientation}`}
-        class:tick-value-disabled={disabled}
-      >
+        max
+      })}%;">
+      <span class={`tick-value tick-value-${orientation}`} class:tick-value-disabled={disabled}>
         <slot name="tick-value" value={tick}>
           {tick}
         </slot>
@@ -356,18 +344,12 @@
       class:tick-disabled={disabled}
       style="{vertical ? 'bottom' : 'left'}: {calcPercentOfRange(sub, {
         min,
-        max,
-      })}%;"
-    />
+        max
+      })}%;" />
   {/each}
 </div>
 
-<svelte:window
-  on:mousemove={onMove}
-  on:touchmove={onMove}
-  on:mouseup={onEnd}
-  on:touchend={onEnd}
-/>
+<svelte:window on:mousemove={onMove} on:touchmove={onMove} on:mouseup={onEnd} on:touchend={onEnd} />
 
 <style src="./slider.scss">
 </style>

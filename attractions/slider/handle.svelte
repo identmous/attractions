@@ -1,9 +1,9 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  import { tweened } from 'svelte/motion';
-  import { sineOut } from 'svelte/easing';
-  import { handleStyle } from './actions';
-  import { calcPercentOfRange } from './utils';
+  import { createEventDispatcher } from "svelte";
+  import { tweened } from "svelte/motion";
+  import { sineOut } from "svelte/easing";
+  import { handleStyle } from "./actions";
+  import { calcPercentOfRange } from "./utils";
 
   const dispatch = createEventDispatcher();
 
@@ -71,7 +71,7 @@
   function handleFocus(_e) {
     if (!disabled) {
       focus = true;
-      dispatch('focus', focus);
+      dispatch("focus", focus);
     }
   }
 
@@ -81,7 +81,7 @@
    */
   function handleBlur(_e) {
     focus = false;
-    dispatch('focus', focus);
+    dispatch("focus", focus);
   }
 
   function handleMouseEnter() {
@@ -110,7 +110,7 @@
   /**
    * @type {'vertical' | 'horizontal'}
    */
-  $: orientation = vertical ? 'vertical' : 'horizontal';
+  $: orientation = vertical ? "vertical" : "horizontal";
 </script>
 
 <div
@@ -120,7 +120,7 @@
   use:handleStyle={{
     value: $tween,
     active,
-    vertical,
+    vertical
   }}
   bind:this={handle}
   on:keydown={handleKeyDown}
@@ -134,8 +134,7 @@
   class:handle-disabled={disabled}
   aria-valuenow={value}
   aria-orientation={orientation}
-  aria-disabled={disabled}
->
+  aria-disabled={disabled}>
   <slot name="tooltips" {canShowActiveTooltip} {value} />
 </div>
 

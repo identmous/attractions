@@ -1,10 +1,10 @@
 <script>
-  import { stores } from '@sapper/app';
-  import { Button } from 'attractions';
-  import { HomeIcon, ArrowUpIcon } from 'svelte-feather-icons';
-  import Header from 'src/containers/docs/header.svelte';
-  import MobileNavigation from 'src/containers/docs/mobile-navigation.svelte';
-  import DesktopNavigation from 'src/containers/docs/desktop-navigation.svelte';
+  import { stores } from "@sapper/app";
+  import { Button } from "attractions";
+  import { HomeIcon, ArrowUpIcon } from "svelte-feather-icons";
+  import Header from "src/containers/docs/header.svelte";
+  import MobileNavigation from "src/containers/docs/mobile-navigation.svelte";
+  import DesktopNavigation from "src/containers/docs/desktop-navigation.svelte";
 
   const { page } = stores();
 
@@ -17,7 +17,7 @@
 
   let scrollbarVisible;
   page.subscribe(function updateScrollbarVisibility() {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return;
     }
     scrollbarVisible = window.innerHeight < document.body.scrollHeight;
@@ -26,164 +26,164 @@
   const places = [
     {
       title: HomeIcon,
-      segment: '',
+      segment: ""
     },
     {
-      title: 'Changelog',
-      segment: 'changelog',
+      title: "Changelog",
+      segment: "changelog"
     },
     {
-      title: 'Migration Guide',
-      segment: 'migration-guide',
+      title: "Migration Guide",
+      segment: "migration-guide"
     },
     {
-      title: 'Installation',
-      segment: 'installation',
+      title: "Installation",
+      segment: "installation"
     },
     {
-      title: 'Theming with Sass',
-      segment: 'theming',
+      title: "Theming with Sass",
+      segment: "theming"
     },
     {
-      title: 'Components',
+      title: "Components",
       sub: [
         {
-          title: 'Accordion',
-          segment: 'components/accordion',
+          title: "Accordion",
+          segment: "components/accordion"
         },
         {
-          title: 'Autocomplete',
-          segment: 'components/autocomplete',
+          title: "Autocomplete",
+          segment: "components/autocomplete"
         },
         {
-          title: 'Badge',
-          segment: 'components/badge',
+          title: "Badge",
+          segment: "components/badge"
         },
         {
-          title: 'Breadcrumbs',
-          segment: 'components/breadcrumbs',
+          title: "Breadcrumbs",
+          segment: "components/breadcrumbs"
         },
         {
-          title: 'Button',
-          segment: 'components/button',
+          title: "Button",
+          segment: "components/button"
         },
         {
-          title: 'Card',
-          segment: 'components/card',
+          title: "Card",
+          segment: "components/card"
         },
         {
-          title: 'CheckboxGroup',
-          segment: 'components/checkbox-group',
+          title: "CheckboxGroup",
+          segment: "components/checkbox-group"
         },
         {
-          title: 'Chip',
-          segment: 'components/chip',
+          title: "Chip",
+          segment: "components/chip"
         },
         {
-          title: 'DatePicker',
-          segment: 'components/date-picker',
+          title: "DatePicker",
+          segment: "components/date-picker"
         },
         {
-          title: 'Dialog',
-          segment: 'components/dialog',
+          title: "Dialog",
+          segment: "components/dialog"
         },
         {
-          title: 'Divider',
-          segment: 'components/divider',
+          title: "Divider",
+          segment: "components/divider"
         },
         {
-          title: 'Dot',
-          segment: 'components/dot',
+          title: "Dot",
+          segment: "components/dot"
         },
         {
-          title: 'Dropdown',
-          segment: 'components/dropdown',
+          title: "Dropdown",
+          segment: "components/dropdown"
         },
         {
-          title: 'FileDropzone',
-          segment: 'components/file-dropzone',
+          title: "FileDropzone",
+          segment: "components/file-dropzone"
         },
         {
-          title: 'FileInput',
-          segment: 'components/file-input',
+          title: "FileInput",
+          segment: "components/file-input"
         },
         {
-          title: 'FormField',
-          segment: 'components/form-field',
+          title: "FormField",
+          segment: "components/form-field"
         },
         {
-          title: 'Loading',
-          segment: 'components/loading',
+          title: "Loading",
+          segment: "components/loading"
         },
         {
-          title: 'Modal',
-          segment: 'components/modal',
+          title: "Modal",
+          segment: "components/modal"
         },
         {
-          title: 'Pagination',
-          segment: 'components/pagination',
+          title: "Pagination",
+          segment: "components/pagination"
         },
         {
-          title: 'Popover',
-          segment: 'components/popover',
+          title: "Popover",
+          segment: "components/popover"
         },
         {
-          title: 'RadioGroup',
-          segment: 'components/radio-group',
+          title: "RadioGroup",
+          segment: "components/radio-group"
         },
         {
-          title: 'Slider',
-          segment: 'components/slider',
+          title: "Slider",
+          segment: "components/slider"
         },
         {
-          title: 'SnackbarContainer',
-          segment: 'components/snackbar-container',
+          title: "SnackbarContainer",
+          segment: "components/snackbar-container"
         },
         {
-          title: 'StarRating',
-          segment: 'components/star-rating',
+          title: "StarRating",
+          segment: "components/star-rating"
         },
         {
-          title: 'Switch',
-          segment: 'components/switch',
+          title: "Switch",
+          segment: "components/switch"
         },
         {
-          title: 'Table',
-          segment: 'components/table',
+          title: "Table",
+          segment: "components/table"
         },
         {
-          title: 'Tabs',
-          segment: 'components/tabs',
+          title: "Tabs",
+          segment: "components/tabs"
         },
         {
-          title: 'TextField',
-          segment: 'components/text-field',
+          title: "TextField",
+          segment: "components/text-field"
         },
         {
-          title: 'TimePicker',
-          segment: 'components/time-picker',
+          title: "TimePicker",
+          segment: "components/time-picker"
         },
         {
-          title: 'Typography',
-          segment: 'components/typography',
-        },
-      ],
+          title: "Typography",
+          segment: "components/typography"
+        }
+      ]
     },
     {
-      title: 'Utilities',
-      segment: 'utilities',
+      title: "Utilities",
+      segment: "utilities"
     },
     {
-      title: 'Custom Elements',
-      segment: 'custom-elements',
-    },
+      title: "Custom Elements",
+      segment: "custom-elements"
+    }
   ];
 </script>
 
 <Header {segment} />
-<MobileNavigation {places} segment={segment || ''} />
+<MobileNavigation {places} segment={segment || ""} />
 <main class="padded extra">
-  <DesktopNavigation {places} segment={segment || ''} />
+  <DesktopNavigation {places} segment={segment || ""} />
   <article>
     <slot />
     {#if scrollbarVisible}

@@ -3,22 +3,22 @@
    * @typedef {{ start: Date | null; end: Date | null }} DateRange
    * @event {{ value: Date | DateRange }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
-  import Button from '../button/button.svelte';
-  import TextField from '../text-field/text-field.svelte';
-  import Dropdown from '../dropdown/dropdown.svelte';
-  import DropdownShell from '../dropdown/dropdown-shell.svelte';
-  import ChevronLeft from './chevron-left.svelte';
-  import ChevronRight from './chevron-right.svelte';
-  import Calendar from './calendar.svelte';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
+  import Button from "../button/button.svelte";
+  import TextField from "../text-field/text-field.svelte";
+  import Dropdown from "../dropdown/dropdown.svelte";
+  import DropdownShell from "../dropdown/dropdown-shell.svelte";
+  import ChevronLeft from "./chevron-left.svelte";
+  import ChevronRight from "./chevron-right.svelte";
+  import Calendar from "./calendar.svelte";
   import {
     applyDate,
     copyDate,
     datesEqual,
     formatDateTime,
-    parseDateTime,
-  } from '../utils/datetime-utils.js';
+    parseDateTime
+  } from "../utils/datetime-utils.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -96,13 +96,13 @@
    * The format string for the text input and representation. The `%`-specifiers are a subset of [C date format specifiers](http://www.cplusplus.com/reference/ctime/strftime/), with only `%d`, `%m`, `%y` and `%Y` allowed.
    * @type {string}
    */
-  export let format = '%d.%m.%Y';
+  export let format = "%d.%m.%Y";
   $: readableFormat = format
-    .replace('%d', 'dd')
-    .replace('%m', 'mm')
-    .replace('%y', 'yy')
-    .replace('%Y', 'yyyy')
-    .replace('%%', '%');
+    .replace("%d", "dd")
+    .replace("%m", "mm")
+    .replace("%y", "yy")
+    .replace("%Y", "yyyy")
+    .replace("%%", "%");
 
   let startFocus = false;
   let endFocus = false;
@@ -113,9 +113,8 @@
   $: registerChange(startValue, endValue);
 
   let shownCalendar =
-    (range && value != null
-      ? /** @type {DateRange}*/ (value).start
-      : /** @type {Date}*/ (value)) || new Date();
+    (range && value != null ? /** @type {DateRange}*/ (value).start : /** @type {Date}*/ (value)) ||
+    new Date();
 
   function unpackValue(value) {
     startValue = copyDate(range ? value && value.start : value);
@@ -144,11 +143,7 @@
       }
     }
 
-    if (
-      closeOnSelection &&
-      startValue != null &&
-      (!range || endValue != null)
-    ) {
+    if (closeOnSelection && startValue != null && (!range || endValue != null)) {
       startFocus = endFocus = false;
     }
 
@@ -182,10 +177,7 @@
     } else {
       if (range) {
         const dateRange = /** @type {DateRange} */ (value);
-        if (
-          datesEqual(start, dateRange.start) &&
-          datesEqual(end, dateRange.end)
-        ) {
+        if (datesEqual(start, dateRange.start) && datesEqual(end, dateRange.end)) {
           return;
         }
       } else {
@@ -195,11 +187,9 @@
       }
     }
 
-    value = range
-      ? { start: copyDate(start), end: copyDate(end) }
-      : copyDate(start);
+    value = range ? { start: copyDate(start), end: copyDate(end) } : copyDate(start);
     if (!range || (start != null && end != null)) {
-      dispatch('change', { value });
+      dispatch("change", { value });
     }
   }
 
@@ -214,13 +204,13 @@
   }
 
   const headerFormatter = Intl.DateTimeFormat(locale, {
-    month: 'long',
-    year: 'numeric',
+    month: "long",
+    year: "numeric"
   });
   const dispatch = createEventDispatcher();
 </script>
 
-<div class={classes('date-picker', _class)}>
+<div class={classes("date-picker", _class)}>
   <DropdownShell open={startFocus || endFocus} on:change={clearFocus}>
     <div class="handle">
       <TextField
@@ -230,17 +220,13 @@
           startFocus = true;
           endFocus = false;
         }}
-        class={classes(startFocus && 'in-focus')}
+        class={classes(startFocus && "in-focus")}
         {inputClass}
         on:change={({ detail }) => {
-          startValue = applyDate(
-            parseDateTime(detail.value, format, startValue),
-            startValue
-          );
+          startValue = applyDate(parseDateTime(detail.value, format, startValue), startValue);
           fixRange();
           shiftShownCalendar(startValue);
-        }}
-      />
+        }} />
       {#if range}
         <slot name="between-inputs"><span>to</span></slot>
         <TextField
@@ -250,17 +236,13 @@
             startFocus = false;
             endFocus = true;
           }}
-          class={classes(endFocus && 'in-focus')}
+          class={classes(endFocus && "in-focus")}
           {inputClass}
           on:change={({ detail }) => {
-            endValue = applyDate(
-              parseDateTime(detail.value, format, endValue),
-              endValue
-            );
+            endValue = applyDate(parseDateTime(detail.value, format, endValue), endValue);
             fixRange();
             shiftShownCalendar(endValue);
-          }}
-        />
+          }} />
       {/if}
     </div>
     {#if !noCalendar}
@@ -294,8 +276,7 @@
           {weekdaysClass}
           {weekClass}
           {dayClass}
-          on:day-select={select}
-        />
+          on:day-select={select} />
       </Dropdown>
     {/if}
   </DropdownShell>

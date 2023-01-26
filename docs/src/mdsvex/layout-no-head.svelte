@@ -1,15 +1,15 @@
 <script context="module">
-  import Heading1 from 'src/mdsvex/h1.svelte';
-  import Heading2 from 'src/mdsvex/h2.svelte';
-  import Heading3 from 'src/mdsvex/h3.svelte';
-  import UnorderedList from 'src/mdsvex/ul.svelte';
-  import ListItem from 'src/mdsvex/li.svelte';
-  import Table from 'src/mdsvex/table.svelte';
-  import TableHead from 'src/mdsvex/th.svelte';
-  import TableRow from 'src/mdsvex/tr.svelte';
-  import TableData from 'src/mdsvex/td.svelte';
-  import Mark from 'src/mdsvex/mark.svelte';
-  import Paragraph from 'src/mdsvex/p.svelte';
+  import Heading1 from "src/mdsvex/h1.svelte";
+  import Heading2 from "src/mdsvex/h2.svelte";
+  import Heading3 from "src/mdsvex/h3.svelte";
+  import UnorderedList from "src/mdsvex/ul.svelte";
+  import ListItem from "src/mdsvex/li.svelte";
+  import Table from "src/mdsvex/table.svelte";
+  import TableHead from "src/mdsvex/th.svelte";
+  import TableRow from "src/mdsvex/tr.svelte";
+  import TableData from "src/mdsvex/td.svelte";
+  import Mark from "src/mdsvex/mark.svelte";
+  import Paragraph from "src/mdsvex/p.svelte";
 
   export {
     Heading1 as h1,
@@ -22,7 +22,7 @@
     TableRow as tr,
     TableData as td,
     Mark as mark,
-    Paragraph as p,
+    Paragraph as p
   };
 </script>
 

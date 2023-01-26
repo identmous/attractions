@@ -7,9 +7,9 @@
    * @event {{ nativeEvent: FocusEvent }} blur
    * @restProps {textarea | input}
    */
-  import { createEventDispatcher, onMount } from 'svelte';
-  import eventsAction from '../utils/events.js';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher, onMount } from "svelte";
+  import eventsAction from "../utils/events.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -79,7 +79,7 @@
   export let autofocus = false;
 
   if (!outline && label != null) {
-    console.error('Labels are only available for outlined text fields');
+    console.error("Labels are only available for outlined text fields");
   }
 
   /**
@@ -97,7 +97,7 @@
   onMount(() => autofocus && inputElement.focus());
 
   function toNumber(string) {
-    if (string === '') {
+    if (string === "") {
       return null;
     }
     return parseFloat(string);
@@ -105,7 +105,7 @@
 
   function toString(value) {
     if (value == null) {
-      return '';
+      return "";
     }
     return value.toString();
   }
@@ -115,23 +115,22 @@
    */
   function handleInput(event) {
     value =
-      $$restProps.type === 'number'
+      $$restProps.type === "number"
         ? toNumber(event.currentTarget.value)
         : event.currentTarget.value;
-    dispatch('input', { value, nativeEvent: event });
+    dispatch("input", { value, nativeEvent: event });
   }
 
   const dispatch = createEventDispatcher();
 </script>
 
 <div
-  class={classes('text-field', _class)}
+  class={classes("text-field", _class)}
   class:outline
   class:with-item={withItem}
   class:left={withItem && !itemRight}
   class:right={withItem && itemRight}
-  class:no-spinner={noSpinner}
->
+  class:no-spinner={noSpinner}>
   {#if multiline}
     <textarea
       {id}
@@ -139,13 +138,12 @@
       class={classes(inputClass)}
       bind:this={inputElement}
       on:input={handleInput}
-      on:change={e => dispatch('change', { value, nativeEvent: e })}
-      on:focus={e => dispatch('focus', { nativeEvent: e })}
-      on:keydown={e => dispatch('keydown', { nativeEvent: e })}
-      on:blur={e => dispatch('blur', { nativeEvent: e })}
+      on:change={(e) => dispatch("change", { value, nativeEvent: e })}
+      on:focus={(e) => dispatch("focus", { nativeEvent: e })}
+      on:keydown={(e) => dispatch("keydown", { nativeEvent: e })}
+      on:blur={(e) => dispatch("blur", { nativeEvent: e })}
       use:eventsAction={events}
-      {...$$restProps}
-    />
+      {...$$restProps} />
   {:else}
     <input
       {id}
@@ -153,13 +151,12 @@
       class={classes(inputClass)}
       bind:this={inputElement}
       on:input={handleInput}
-      on:change={e => dispatch('change', { value, nativeEvent: e })}
-      on:focus={e => dispatch('focus', { nativeEvent: e })}
-      on:keydown={e => dispatch('keydown', { nativeEvent: e })}
-      on:blur={e => dispatch('blur', { nativeEvent: e })}
+      on:change={(e) => dispatch("change", { value, nativeEvent: e })}
+      on:focus={(e) => dispatch("focus", { nativeEvent: e })}
+      on:keydown={(e) => dispatch("keydown", { nativeEvent: e })}
+      on:blur={(e) => dispatch("blur", { nativeEvent: e })}
       use:eventsAction={events}
-      {...$$restProps}
-    />
+      {...$$restProps} />
     {#if outline && label != null}
       <label for={id} class={classes(labelClass)}>{label}</label>
     {/if}
@@ -169,7 +166,7 @@
     {/if}
 
     {#if error}
-      <span class={classes('error', errorClass)}>
+      <span class={classes("error", errorClass)}>
         <slot name="error">{error}</slot>
       </span>
     {/if}

@@ -1,6 +1,6 @@
 <script>
-  import { Label, Card, Button } from 'attractions';
-  import { classes } from 'attractions/utils';
+  import { Label, Card, Button } from "attractions";
+  import { classes } from "attractions/utils";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -10,7 +10,7 @@
 </script>
 
 {#if components.length !== 0}
-  <div class={classes('related-components', _class)}>
+  <div class={classes("related-components", _class)}>
     <Label>Related Components</Label>
     {#each components as component}
       <Card>

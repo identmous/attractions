@@ -2,15 +2,10 @@
   /**
    * @event {Date} day-select
    */
-  import Button from '../button/button.svelte';
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
-  import {
-    getWeekdays,
-    datesEqual,
-    datesLessEqual,
-    getCalendar,
-  } from '../utils/datetime-utils.js';
+  import Button from "../button/button.svelte";
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
+  import { getWeekdays, datesEqual, datesLessEqual, getCalendar } from "../utils/datetime-utils.js";
 
   /**
    * A class string to add to the list of weekdays above the calendar.
@@ -70,15 +65,15 @@
   /**
    * Messages translation for "today not available".
    */
-  export let titleTodayNotAvailableMessage = 'Today, not available';
+  export let titleTodayNotAvailableMessage = "Today, not available";
   /**
    * Messages translation for "today".
    */
-  export let titleTodayMessage = 'Today';
+  export let titleTodayMessage = "Today";
   /**
    * Messages translation for "not available".
    */
-  export let titleNotAvailableMessage = 'Not available';
+  export let titleNotAvailableMessage = "Not available";
 
   const weekdays = getWeekdays(locale, firstWeekday);
   const today = new Date();
@@ -99,17 +94,17 @@
     return null;
   }
 
-  const dayNumberFormatter = Intl.DateTimeFormat(locale, { day: 'numeric' });
+  const dayNumberFormatter = Intl.DateTimeFormat(locale, { day: "numeric" });
   const dispatch = createEventDispatcher();
 </script>
 
-<div class={classes('weekdays', weekdaysClass)}>
+<div class={classes("weekdays", weekdaysClass)}>
   {#each weekdays as dayName (dayName)}
     <span class="weekday">{dayName}</span>
   {/each}
 </div>
 {#each getCalendar(month, year, firstWeekday, disabledDates) as week}
-  <div class={classes('week', weekClass)}>
+  <div class={classes("week", weekClass)}>
     <!--
       The following .day elements may have one of the classes:
       * .disabled: day is not available for selection
@@ -122,7 +117,7 @@
     -->
     {#each week as day}
       <div
-        class={classes('day', dayClass)}
+        class={classes("day", dayClass)}
         class:today={datesEqual(day.value, today)}
         class:outside={day.outside}
         class:selected={datesEqual(day.value, selectionStart) ||
@@ -131,16 +126,14 @@
         class:end={datesEqual(day.value, selectionEnd)}
         class:in-range={datesLessEqual(selectionStart, day.value) &&
           datesLessEqual(day.value, selectionEnd)}
-        class:disabled={day.disabled}
-      >
+        class:disabled={day.disabled}>
         <Button
           title={computeTitle(day)}
-          on:click={e => {
+          on:click={(e) => {
             e.detail.nativeEvent.stopPropagation();
-            dispatch('day-select', day.value);
+            dispatch("day-select", day.value);
           }}
-          disabled={day.disabled}
-        >
+          disabled={day.disabled}>
           {dayNumberFormatter.format(day.value)}
         </Button>
       </div>

@@ -2,8 +2,8 @@
   /**
    * @event {{ nativeEvent: MouseEvent }} click
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -15,10 +15,9 @@
 
 <button
   type="button"
-  class={classes('popover-button', _class)}
-  on:click={e => dispatch('click', { nativeEvent: e })}
-  {...$$restProps}
->
+  class={classes("popover-button", _class)}
+  on:click={(e) => dispatch("click", { nativeEvent: e })}
+  {...$$restProps}>
   <slot />
 </button>
 

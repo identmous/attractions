@@ -1,5 +1,5 @@
 <script>
-  import Button from '../button/button.svelte';
+  import Button from "../button/button.svelte";
 
   /**
    * The list of segments to be displayed.
@@ -10,7 +10,7 @@
    * The separator between segments.
    * @type {string}
    */
-  export let separator = '/';
+  export let separator = "/";
 
   // TODO: replace `div` with `ol` and `li`, using `::before` for separator
 </script>

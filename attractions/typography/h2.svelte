@@ -1,5 +1,5 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */

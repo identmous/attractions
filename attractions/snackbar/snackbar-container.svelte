@@ -9,10 +9,10 @@
    *   expired: Promise<boolean>,
    * } }}
    */
-  import { setContext } from 'svelte';
-  import Snackbar from './snackbar.svelte';
-  import snackbarContextKey from './snackbar-context-key.js';
-  import SnackbarPositions from './snackbar-positions.js';
+  import { setContext } from "svelte";
+  import Snackbar from "./snackbar.svelte";
+  import snackbarContextKey from "./snackbar-context-key.js";
+  import SnackbarPositions from "./snackbar-positions.js";
 
   /**
    * The position of the snackbar stack inside the container.
@@ -24,7 +24,7 @@
 
   function removeSnackbar(key, closedEarly) {
     registeredSnackbars.delete(key);
-    if (typeof key.resolveExpiredPromise === 'function') {
+    if (typeof key.resolveExpiredPromise === "function") {
       key.resolveExpiredPromise(!closedEarly);
     }
     registeredSnackbars = registeredSnackbars;
@@ -45,7 +45,7 @@
     const {
       component = Snackbar,
       props = /** @type {Record<string, any>} */ ({}),
-      duration = 4000,
+      duration = 4000
     } = options;
 
     const key = { component, props };
@@ -53,7 +53,7 @@
     key.props.closeCallback = function close() {
       clearTimeout(key.timeoutID);
       removeSnackbar(key, true);
-      if (typeof originalCloseCallback === 'function') {
+      if (typeof originalCloseCallback === "function") {
         originalCloseCallback();
       }
     };
@@ -63,7 +63,7 @@
 
     return {
       close: key.props.closeCallback,
-      expired: new Promise(resolve => (key.resolveExpiredPromise = resolve)),
+      expired: new Promise((resolve) => (key.resolveExpiredPromise = resolve))
     };
   }
 

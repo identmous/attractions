@@ -1,6 +1,6 @@
 <script>
-  import classes from '../utils/classes.js';
-  import PopoverPositions from './popover-positions.js';
+  import classes from "../utils/classes.js";
+  import PopoverPositions from "./popover-positions.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -19,9 +19,9 @@
   export let position = PopoverPositions.TOP;
 </script>
 
-<div class={classes('popover-container', _class)}>
+<div class={classes("popover-container", _class)}>
   <slot />
-  <div class={classes('popover', position, popoverClass)}>
+  <div class={classes("popover", position, popoverClass)}>
     <slot name="popover-content" />
   </div>
 </div>

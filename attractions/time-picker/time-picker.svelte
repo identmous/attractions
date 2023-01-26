@@ -2,22 +2,17 @@
   /**
    * @event {{ value: Date }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
-  import Button from '../button/button.svelte';
-  import Label from '../typography/label.svelte';
-  import TextField from '../text-field/text-field.svelte';
-  import Dropdown from '../dropdown/dropdown.svelte';
-  import DropdownShell from '../dropdown/dropdown-shell.svelte';
-  import Tab from '../tab/tab.svelte';
-  import Clock from './clock.svelte';
-  import {
-    parseDateTime,
-    formatDateTime,
-    applyTime,
-    copyDate,
-  } from '../utils/datetime-utils.js';
-  import { default as rangeGenerator } from '../utils/range.js';
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
+  import Button from "../button/button.svelte";
+  import Label from "../typography/label.svelte";
+  import TextField from "../text-field/text-field.svelte";
+  import Dropdown from "../dropdown/dropdown.svelte";
+  import DropdownShell from "../dropdown/dropdown-shell.svelte";
+  import Tab from "../tab/tab.svelte";
+  import Clock from "./clock.svelte";
+  import { parseDateTime, formatDateTime, applyTime, copyDate } from "../utils/datetime-utils.js";
+  import { default as rangeGenerator } from "../utils/range.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -53,25 +48,25 @@
    * The `%`-specifiers are a subset of [C date format specifiers](http://www.cplusplus.com/reference/ctime/strftime/), with only `%H`, `%M`, `%S`, `%P` and `%p` allowed. `%P` stands for AM/PM, while `%p` stands for am/pm.
    * @type {string}
    */
-  export let format = '%H:%M';
+  export let format = "%H:%M";
   /**
    * If the `%P` or `%p` modifier is used in the format, the dropdown will contain tabs to switch between AM and PM.
    * You may change the name of the radio group for these tabs to avoid collisions.
    * @type {string}
    */
-  export let amPmTabName = 'am-pm';
+  export let amPmTabName = "am-pm";
   $: readableFormat = format
-    .replace('%H', 'HH')
-    .replace('%M', 'MM')
-    .replace('%S', 'SS')
-    .replace('%P', 'AM')
-    .replace('%p', 'am')
-    .replace('%%', '%');
+    .replace("%H", "HH")
+    .replace("%M", "MM")
+    .replace("%S", "SS")
+    .replace("%P", "AM")
+    .replace("%p", "am")
+    .replace("%%", "%");
 
   const f12hours = /%p/i.test(format);
   const hasSeconds = /%S/.test(format);
   let focus = false;
-  $: currentAmPm = value && (value.getHours() < 12 ? 'AM' : 'PM');
+  $: currentAmPm = value && (value.getHours() < 12 ? "AM" : "PM");
 
   /**
    * The list of possible hours to choose from.
@@ -114,7 +109,7 @@
       value.setHours(hourValue);
     }
     value = value;
-    dispatch('change', { value });
+    dispatch("change", { value });
   }
 
   function setMinutes(minuteValue) {
@@ -126,7 +121,7 @@
 
     value.setMinutes(minuteValue);
     value = value;
-    dispatch('change', { value });
+    dispatch("change", { value });
   }
 
   function setSeconds(secondValue) {
@@ -138,7 +133,7 @@
 
     value.setSeconds(secondValue);
     value = value;
-    dispatch('change', { value });
+    dispatch("change", { value });
   }
 
   function setToNow() {
@@ -148,15 +143,15 @@
 
   function changeAmPm({ detail: newAmPm }) {
     if (value == null) {
-      if (newAmPm.value === 'PM') {
+      if (newAmPm.value === "PM") {
         setHours(12);
       } else {
         setHours(0);
       }
     } else {
-      if (newAmPm.value === 'PM' && value.getHours() < 12) {
+      if (newAmPm.value === "PM" && value.getHours() < 12) {
         setHours(value.getHours() + 12);
-      } else if (newAmPm.value === 'AM' && value.getHours() >= 12) {
+      } else if (newAmPm.value === "AM" && value.getHours() >= 12) {
         setHours(value.getHours() - 12);
       }
     }
@@ -166,14 +161,12 @@
     if (!value) {
       return false;
     }
-    const currentHour = f12hours
-      ? ((selected.getHours() + 11) % 12) + 1
-      : selected.getHours();
+    const currentHour = f12hours ? ((selected.getHours() + 11) % 12) + 1 : selected.getHours();
     return hour === currentHour;
   }
 
   function handleKeyPress(evt) {
-    if (evt.key === 'Enter') {
+    if (evt.key === "Enter") {
       evt.preventDefault();
       focus = !focus;
     }
@@ -181,41 +174,31 @@
 
   function toggleKeyboardListener({ detail }) {
     if (detail.value) {
-      document.addEventListener('keydown', handleKeyPress);
+      document.addEventListener("keydown", handleKeyPress);
     } else {
-      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     }
   }
 
   const dispatch = createEventDispatcher();
 </script>
 
-<div
-  class={classes(
-    'time-picker',
-    _class,
-    f12hours && 'f12hours',
-    hasSeconds && 'seconds'
-  )}
->
+<div class={classes("time-picker", _class, f12hours && "f12hours", hasSeconds && "seconds")}>
   <DropdownShell bind:open={focus} on:change={toggleKeyboardListener}>
     <div class="handle">
       <TextField
         placeholder={readableFormat}
         value={formatDateTime(value, format)}
         on:focus={() => (focus = true)}
-        class={classes(focus && 'in-focus')}
+        class={classes(focus && "in-focus")}
         {inputClass}
         on:change={({ detail }) => {
           value = applyTime(parseDateTime(detail.value, format, value), value);
-        }}
-      />
+        }} />
     </div>
     <Dropdown class="barrel" {top} {right}>
       <div class="shown-on-focus">
-        <Button noRipple on:click={() => (focus = false)}>
-          close the time picker
-        </Button>
+        <Button noRipple on:click={() => (focus = false)}>close the time picker</Button>
       </div>
       <slot name="hours-label">
         <Label>Hours</Label>
@@ -224,16 +207,9 @@
         {#each hours as hour}
           <Button
             on:click={() =>
-              setHours(
-                hour +
-                  12 *
-                    Number(
-                      (f12hours && currentAmPm === 'PM') !== (value === 12)
-                    )
-              )}
-            selected={matchesCurrentHour(hour, value)}
-          >
-            {hour.toString().padStart(2, '0')}
+              setHours(hour + 12 * Number((f12hours && currentAmPm === "PM") !== (value === 12)))}
+            selected={matchesCurrentHour(hour, value)}>
+            {hour.toString().padStart(2, "0")}
           </Button>
         {/each}
       </div>
@@ -244,9 +220,8 @@
         {#each minutes as mins}
           <Button
             on:click={() => setMinutes(mins)}
-            selected={(value && mins === value.getMinutes()) || undefined}
-          >
-            {mins.toString().padStart(2, '0')}
+            selected={(value && mins === value.getMinutes()) || undefined}>
+            {mins.toString().padStart(2, "0")}
           </Button>
         {/each}
       </div>
@@ -258,27 +233,16 @@
           {#each seconds as secs}
             <Button
               on:click={() => setSeconds(secs)}
-              selected={(value && secs === value.getSeconds()) || undefined}
-            >
-              {secs.toString().padStart(2, '0')}
+              selected={(value && secs === value.getSeconds()) || undefined}>
+              {secs.toString().padStart(2, "0")}
             </Button>
           {/each}
         </div>
       {/if}
       {#if f12hours}
         <div class="am-pm-tabs">
-          <Tab
-            value="AM"
-            name={amPmTabName}
-            on:change={changeAmPm}
-            bind:group={currentAmPm}
-          />
-          <Tab
-            value="PM"
-            name={amPmTabName}
-            on:change={changeAmPm}
-            bind:group={currentAmPm}
-          />
+          <Tab value="AM" name={amPmTabName} on:change={changeAmPm} bind:group={currentAmPm} />
+          <Tab value="PM" name={amPmTabName} on:change={changeAmPm} bind:group={currentAmPm} />
         </div>
       {/if}
       {#if !hideNow}

@@ -3,9 +3,9 @@
    * @event {{ value: string; nativeEvent: Event }} change
    * @extends {'./radio-button.svelte'} RadioButtonProps
    */
-  import classes from '../utils/classes.js';
-  import getColorPickerStyles from '../utils/color-picker-styles.js';
-  import RadioButton from './radio-button.svelte';
+  import classes from "../utils/classes.js";
+  import getColorPickerStyles from "../utils/color-picker-styles.js";
+  import RadioButton from "./radio-button.svelte";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -50,13 +50,11 @@
   export let labelsLeft = false;
 
   if (!items || items.length === 0) {
-    console.error('Must have at least one item in the radio group');
+    console.error("Must have at least one item in the radio group");
   }
 
   if (color && labelClass != null) {
-    console.warn(
-      'labelClass has no effect: labels are not rendered for color radio groups'
-    );
+    console.warn("labelClass has no effect: labels are not rendered for color radio groups");
   }
 </script>
 
@@ -70,10 +68,9 @@
         bind:group={value}
         value={item.value}
         disabled={item.disabled}
-        class={classes(color && 'colored', radioClass)}
+        class={classes(color && "colored", radioClass)}
         on:change
-        {...$$restProps}
-      >
+        {...$$restProps}>
         {#if !color}
           {#if labelClass != null}
             <span class={classes(labelClass)}>{item.label || item.value}</span>

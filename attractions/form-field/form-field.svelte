@@ -1,5 +1,5 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -49,15 +49,15 @@
   export let errors = [];
 </script>
 
-<div class={classes('form-field', _class)}>
+<div class={classes("form-field", _class)}>
   <div class="description">
     {#if name != null}
-      <label class={classes('name', nameClass)} for={id}>
+      <label class={classes("name", nameClass)} for={id}>
         {name}&nbsp;{#if required}<span class="required">*</span>{/if}
       </label>
     {/if}
     {#if help != null}
-      <div class={classes('help', helpClass)}>{help}</div>
+      <div class={classes("help", helpClass)}>{help}</div>
     {/if}
     <slot name="description" />
   </div>

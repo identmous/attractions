@@ -4,9 +4,9 @@
    * @event {{ close: () => void; toggle: () => void }} panel-open
    * @event {{ close: () => void; toggle: () => void }} panel-close
    */
-  import Button from '../button/button.svelte';
-  import { createEventDispatcher } from 'svelte';
-  import classes from '../utils/classes.js';
+  import Button from "../button/button.svelte";
+  import { createEventDispatcher } from "svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -29,15 +29,15 @@
       open = false;
     },
     toggle() {
-      dispatch(!open ? 'panel-open' : 'panel-close', selfControl);
+      dispatch(!open ? "panel-open" : "panel-close", selfControl);
       open = !open;
-    },
+    }
   };
 
   const dispatch = createEventDispatcher();
 </script>
 
-<li class:open class={classes('panel', _class)}>
+<li class:open class={classes("panel", _class)}>
   <slot name="handle" toggle={selfControl.toggle}>
     <Button on:click={selfControl.toggle}>{label}</Button>
   </slot>

@@ -1,7 +1,7 @@
 <script>
-  import { Card, Button, H1 } from 'attractions';
-  import { BookOpenIcon, GithubIcon } from 'svelte-feather-icons';
-  import InfoTiles from 'src/containers/home/info-tiles.svelte';
+  import { Card, Button, H1 } from "attractions";
+  import { BookOpenIcon, GithubIcon } from "svelte-feather-icons";
+  import InfoTiles from "src/containers/home/info-tiles.svelte";
 </script>
 
 <svelte:head>

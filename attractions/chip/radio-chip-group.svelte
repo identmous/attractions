@@ -3,8 +3,8 @@
    * @event {{ value: string; nativeEvent: Event }} change
    * @extends {'./radio-chip.svelte'} RadioChipProps
    */
-  import classes from '../utils/classes.js';
-  import RadioChip from './radio-chip.svelte';
+  import classes from "../utils/classes.js";
+  import RadioChip from "./radio-chip.svelte";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -38,7 +38,7 @@
   export let name;
 
   if (!items || items.length === 0) {
-    console.error('Must have at least one item in the radio chip group');
+    console.error("Must have at least one item in the radio chip group");
   }
 </script>
 
@@ -52,8 +52,7 @@
         disabled={item.disabled}
         class={classes(radioClass)}
         on:change
-        {...$$restProps}
-      >
+        {...$$restProps}>
         {#if labelClass != null}
           <span class={classes(labelClass)}>{item.label || item.value}</span>
         {:else}{item.label || item.value}{/if}

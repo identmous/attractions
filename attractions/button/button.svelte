@@ -3,10 +3,10 @@
    * @event {{ nativeEvent: MouseEvent }} click
    * @restProps {a | button}
    */
-  import { createEventDispatcher } from 'svelte';
-  import ripple from '../utils/ripple.js';
-  import eventsAction from '../utils/events.js';
-  import classes from '../utils/classes.js';
+  import { createEventDispatcher } from "svelte";
+  import ripple from "../utils/ripple.js";
+  import eventsAction from "../utils/events.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -85,15 +85,15 @@
   export let events = [];
 
   if (filled && outline) {
-    console.error('A button may not be filled and outlined at the same time');
+    console.error("A button may not be filled and outlined at the same time");
   }
 
   if (danger && neutral) {
-    console.error('A button may not be danger and neutral at the same time');
+    console.error("A button may not be danger and neutral at the same time");
   }
 
   if (filled && selected) {
-    console.error('A button may not be filled and selected at the same time');
+    console.error("A button may not be filled and selected at the same time");
   }
 
   const dispatch = createEventDispatcher();
@@ -102,11 +102,11 @@
 {#if href}
   <a
     href={disabled ? null : href}
-    rel={noPrefetch ? null : 'prefetch'}
+    rel={noPrefetch ? null : "prefetch"}
     sapper:prefetch={noPrefetch ? null : true}
     sveltekit:prefetch={noPrefetch ? null : true}
     disabled={disabled ? true : null}
-    class={classes('btn', _class)}
+    class={classes("btn", _class)}
     class:filled
     class:outline
     class:danger
@@ -115,18 +115,17 @@
     class:rectangle
     class:small
     class:selected
-    on:click={e => dispatch('click', { nativeEvent: e })}
+    on:click={(e) => dispatch("click", { nativeEvent: e })}
     use:eventsAction={events}
     use:ripple={{ disabled: noRipple || disabled }}
-    {...$$restProps}
-  >
+    {...$$restProps}>
     <slot />
   </a>
 {:else}
   <button
     type="button"
     {disabled}
-    class={classes('btn', _class)}
+    class={classes("btn", _class)}
     class:filled
     class:outline
     class:danger
@@ -135,11 +134,10 @@
     class:rectangle
     class:small
     class:selected
-    on:click={e => dispatch('click', { nativeEvent: e })}
+    on:click={(e) => dispatch("click", { nativeEvent: e })}
     use:ripple={{ disabled: noRipple || disabled }}
     use:eventsAction={events}
-    {...$$restProps}
-  >
+    {...$$restProps}>
     <slot />
   </button>
 {/if}

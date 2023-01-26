@@ -1,9 +1,9 @@
 <script>
-  import { onMount } from 'svelte';
-  import * as attractions from 'attractions';
-  import { s, formatFileSize } from 'attractions/utils';
-  import { GridIcon, Edit2Icon, FeatherIcon } from 'svelte-feather-icons';
-  import InfoTile from 'src/components/home/info-tile.svelte';
+  import { onMount } from "svelte";
+  import * as attractions from "attractions";
+  import { s, formatFileSize } from "attractions/utils";
+  import { GridIcon, Edit2Icon, FeatherIcon } from "svelte-feather-icons";
+  import InfoTile from "src/components/home/info-tile.svelte";
 
   const totalComponents =
     Object.keys(attractions).length -
@@ -14,7 +14,7 @@
   onMount(() => {
     bundleSizePromise = fetch(
       `https://bundlephobia.com/api/size?package=attractions@${process.latest_version}`
-    ).then(response => response.json());
+    ).then((response) => response.json());
   });
 </script>
 
@@ -23,35 +23,30 @@
     icon={GridIcon}
     title="{totalComponents} component{s(totalComponents)}"
     subtitle="and more to come!"
-    href="./docs/components/button"
-  />
+    href="./docs/components/button" />
   <InfoTile
     icon={Edit2Icon}
     title="Stylable with Sass"
     subtitle="customize colors, fonts, shadows!"
-    href="./docs/installation"
-  />
+    href="./docs/installation" />
   {#await bundleSizePromise}
     <InfoTile
       icon={FeatherIcon}
       title="Calculating bundle size"
       subtitle="gimme a sec..."
-      href="https://bundlephobia.com/result?p=attractions"
-    />
+      href="https://bundlephobia.com/result?p=attractions" />
   {:then bundleSize}
     <InfoTile
       icon={FeatherIcon}
       title="{formatFileSize(bundleSize['size'])} in size"
       subtitle="and only {formatFileSize(bundleSize['gzip'])} gzipped!"
-      href="https://bundlephobia.com/result?p=attractions"
-    />
+      href="https://bundlephobia.com/result?p=attractions" />
   {:catch}
     <InfoTile
       icon={FeatherIcon}
       title="Well, that's embarrasing"
       subtitle="an error occurred while fetching the bundle size."
-      href="https://bundlephobia.com/result?p=attractions"
-    />
+      href="https://bundlephobia.com/result?p=attractions" />
   {/await}
 </div>
 

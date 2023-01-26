@@ -1,8 +1,8 @@
 <script>
-  import Button from '../button/button.svelte';
-  import { fly } from 'svelte/transition';
-  import dynamic from '../utils/dynamic-transition.js';
-  import classes from '../utils/classes.js';
+  import Button from "../button/button.svelte";
+  import { fly } from "svelte/transition";
+  import dynamic from "../utils/dynamic-transition.js";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -52,23 +52,21 @@
 </script>
 
 <div
-  class={classes('snackbar', _class)}
-  transition:dynamic={{ transition, options: transitionOptions }}
->
-  <span class={classes('text', textClass)}>{text}</span>
+  class={classes("snackbar", _class)}
+  transition:dynamic={{ transition, options: transitionOptions }}>
+  <span class={classes("text", textClass)}>{text}</span>
   {#if action != null}
     <Button
       class={classes(buttonClass)}
       on:click={() => {
-        if (action != null && typeof action.callback === 'function') {
+        if (action != null && typeof action.callback === "function") {
           action.callback();
         }
 
         if (closeOnAction) {
           closeCallback();
         }
-      }}
-    >
+      }}>
       {action.text}
     </Button>
   {/if}

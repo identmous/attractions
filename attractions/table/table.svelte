@@ -1,5 +1,5 @@
 <script>
-  import Label from '../typography/label.svelte';
+  import Label from "../typography/label.svelte";
 
   /**
    * @typedef {{
@@ -41,10 +41,7 @@
   <thead>
     <tr>
       {#each headers as header (header.value)}
-        <th
-          class:center={header.align === 'center'}
-          class:end={header.align === 'end'}
-        >
+        <th class:center={header.align === "center"} class:end={header.align === "end"}>
           <slot name="header-item" {header}>
             <Label>{header.text}</Label>
           </slot>
@@ -56,10 +53,7 @@
     {#each items as item}
       <tr class:alternating={alternatingRows}>
         {#each headers as header (header.value)}
-          <td
-            class:center={header.align === 'center'}
-            class:end={header.align === 'end'}
-          >
+          <td class:center={header.align === "center"} class:end={header.align === "end"}>
             <slot name="item" {header} {item}>
               {item[header.value]}
             </slot>

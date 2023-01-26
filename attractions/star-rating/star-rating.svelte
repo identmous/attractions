@@ -2,12 +2,12 @@
   /**
    * @event {{ value: number; nativeEvent: Event }} change
    */
-  import { createEventDispatcher } from 'svelte';
-  import Star from './star.svelte';
-  import range from '../utils/range.js';
-  import classes from '../utils/classes.js';
-  import ripple from '../utils/ripple.js';
-  import eventsAction from '../utils/events.js';
+  import { createEventDispatcher } from "svelte";
+  import Star from "./star.svelte";
+  import range from "../utils/range.js";
+  import classes from "../utils/classes.js";
+  import ripple from "../utils/ripple.js";
+  import eventsAction from "../utils/events.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -46,8 +46,8 @@
 
   function reverseArrowKeys(event) {
     switch (event.key) {
-      case 'ArrowLeft':
-      case 'ArrowDown':
+      case "ArrowLeft":
+      case "ArrowDown":
         event.preventDefault();
         value = (value + (max + 1) - 1) % (max + 1);
         if (value === 0) {
@@ -55,8 +55,8 @@
         }
         break;
 
-      case 'ArrowRight':
-      case 'ArrowUp':
+      case "ArrowRight":
+      case "ArrowUp":
         event.preventDefault();
         value = (value + 1) % (max + 1);
         break;
@@ -67,7 +67,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<div role="group" class={classes('star-rating', _class)}>
+<div role="group" class={classes("star-rating", _class)}>
   {#each [...range(max, 0, -1)] as i}
     <input
       bind:group={value}
@@ -76,16 +76,11 @@
       {name}
       id={`${name}-${i}`}
       {disabled}
-      on:change={e => dispatch('change', { value, nativeEvent: e })}
+      on:change={(e) => dispatch("change", { value, nativeEvent: e })}
       on:keydown={reverseArrowKeys}
       use:eventsAction={events}
-      {...$$restProps}
-    />
-    <label
-      class={classes(starClass)}
-      for={`${name}-${i}`}
-      use:ripple={{ disabled }}
-    >
+      {...$$restProps} />
+    <label class={classes(starClass)} for={`${name}-${i}`} use:ripple={{ disabled }}>
       <slot name="icon">
         <Star />
       </slot>

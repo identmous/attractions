@@ -1,7 +1,7 @@
 <script>
-  import Button from '../button/button.svelte';
-  import X from './x.svelte';
-  import classes from '../utils/classes.js';
+  import Button from "../button/button.svelte";
+  import X from "./x.svelte";
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -34,11 +34,7 @@
   export let constrainWidth = false;
 </script>
 
-<div
-  class={classes('dialog', _class)}
-  class:danger
-  class:constrain-width={constrainWidth}
->
+<div class={classes("dialog", _class)} class:danger class:constrain-width={constrainWidth}>
   {#if closeCallback != null}
     <Button neutral round class="close" on:click={closeCallback}>
       <slot name="close-icon">
@@ -47,13 +43,7 @@
     </Button>
   {/if}
   {#if title != null}
-    <div
-      class={classes(
-        'title',
-        closeCallback != null && 'close-padded',
-        titleClass
-      )}
-    >
+    <div class={classes("title", closeCallback != null && "close-padded", titleClass)}>
       <slot name="title-icon" />
       {title}
     </div>

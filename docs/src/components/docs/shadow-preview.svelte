@@ -1,7 +1,7 @@
 <script>
-  import { onMount } from 'svelte';
-  import { Popover } from 'attractions';
-  import { PopoverPositions } from 'attractions/popover';
+  import { onMount } from "svelte";
+  import { Popover } from "attractions";
+  import { PopoverPositions } from "attractions/popover";
 
   export let value;
   let preview;
@@ -14,7 +14,7 @@
 <Popover position={PopoverPositions.LEFT}>
   <div class="preview" bind:this={preview}>hover me</div>
   <div slot="popover-content" class="value-popover">
-    {value.replace(/\), /g, '),\n')}
+    {value.replace(/\), /g, "),\n")}
   </div>
 </Popover>
 

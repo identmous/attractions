@@ -1,6 +1,6 @@
 <script>
-  import { Label } from 'attractions';
-  import CopyableCode from 'src/components/docs/copyable-code.svelte';
+  import { Label } from "attractions";
+  import CopyableCode from "src/components/docs/copyable-code.svelte";
 </script>
 
 <section class="showcase">

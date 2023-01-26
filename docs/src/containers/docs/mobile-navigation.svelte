@@ -1,12 +1,12 @@
 <script>
-  import { goto } from '@sapper/app';
-  import { Tab, DropdownShell, Dropdown, Button } from 'attractions';
-  import { ChevronDownIcon } from 'svelte-feather-icons';
+  import { goto } from "@sapper/app";
+  import { Tab, DropdownShell, Dropdown, Button } from "attractions";
+  import { ChevronDownIcon } from "svelte-feather-icons";
 
   export let places;
   export let segment;
 
-  let currentPlace = places.find(place => place.segment === segment);
+  let currentPlace = places.find((place) => place.segment === segment);
 
   function handleTabClick(place) {
     if (place.segment != null) {
@@ -16,7 +16,7 @@
 
   function clearSubmenu({ detail }) {
     if (!detail.value) {
-      currentPlace = places.find(place => place.segment === segment);
+      currentPlace = places.find((place) => place.segment === segment);
     }
   }
 </script>
@@ -25,16 +25,13 @@
   <nav class="mobile padded">
     {#each places as place}
       <Tab
-        class={currentPlace != null &&
-          place.sub === currentPlace.sub &&
-          'selected'}
+        class={currentPlace != null && place.sub === currentPlace.sub && "selected"}
         value={place}
         name="nav-mobile"
         bind:group={currentPlace}
         on:change={() => handleTabClick(place)}
-        on:click={() => place.sub != null && toggle()}
-      >
-        {#if typeof place.title === 'string'}
+        on:click={() => place.sub != null && toggle()}>
+        {#if typeof place.title === "string"}
           {place.title}
         {:else}
           <svelte:component this={place.title} size="24" />

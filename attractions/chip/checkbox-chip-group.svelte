@@ -3,9 +3,9 @@
    * @event {{ value: string; checked: boolean; nativeEvent: Event }} change
    * @extends {'./checkbox-chip.svelte'} CheckboxChipProps
    */
-  import s from '../utils/plural-s.js';
-  import classes from '../utils/classes.js';
-  import CheckboxChip from './checkbox-chip.svelte';
+  import s from "../utils/plural-s.js";
+  import classes from "../utils/classes.js";
+  import CheckboxChip from "./checkbox-chip.svelte";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -48,13 +48,10 @@
     // TODO: switch back to `??` after https://github.com/pastelsky/bundlephobia/issues/530 is merged
     maxReachedTooltip || `Can only select ${max} value${s(max)}.`;
 
-  $: currentChecked = items.reduce(
-    (acc, elt) => acc + Number(elt.checked || 0),
-    0
-  );
+  $: currentChecked = items.reduce((acc, elt) => acc + Number(elt.checked || 0), 0);
 
   if (!items || items.length === 0) {
-    console.error('Must have at least one item in the checkbox chip group');
+    console.error("Must have at least one item in the checkbox chip group");
   }
 </script>
 
@@ -71,8 +68,7 @@
           ? maxReachedTooltipFinal
           : null}
         on:change
-        {...$$restProps}
-      >
+        {...$$restProps}>
         {#if labelClass != null}
           <span class={classes(labelClass)}>{item.label || item.value}</span>
         {:else}{item.label || item.value}{/if}

@@ -1,5 +1,5 @@
 <script>
-  import classes from '../utils/classes.js';
+  import classes from "../utils/classes.js";
 
   let _class = null;
   /** @type {string | false | null} */
@@ -16,11 +16,7 @@
   export let outline = false;
 </script>
 
-<div
-  class:outline
-  class={classes('card', _class, tight && 'no-padding')}
-  {...$$restProps}
->
+<div class:outline class={classes("card", _class, tight && "no-padding")} {...$$restProps}>
   <slot />
 </div>
 
