@@ -6,7 +6,7 @@ const consecutiveSpace = / {2,}/;
  * @returns {string} Clean class string
  */
 export function stripClassWhitespace(classString) {
-  return classString.replace(consecutiveSpace, ' ').trimRight();
+  return classString.replace(consecutiveSpace, " ").trimRight();
 }
 
 /**
@@ -15,5 +15,5 @@ export function stripClassWhitespace(classString) {
  * @return {string} The classes without the falsy values
  */
 export default function classes(...args) {
-  return args.filter(cls => !!cls).join(' ');
+  return args.filter((cls) => !!cls).join(" ");
 }

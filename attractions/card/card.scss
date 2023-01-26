@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use '../_variables' as vars;
+@use "sass:color";
+@use "../_variables" as vars;
 
 .card {
   background-color: vars.$background;

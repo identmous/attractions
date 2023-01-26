@@ -10,7 +10,7 @@ export default function getColorPickerStyles(hexColor) {
   }
 
   if (hexColor.length !== 7) {
-    console.error('Values of colored radio groups must be #XXXXXX hex colors.');
+    console.error("Values of colored radio groups must be #XXXXXX hex colors.");
     return null;
   }
 

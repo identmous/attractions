@@ -1,4 +1,4 @@
-div[role='radiogroup'] :global {
+div[role="radiogroup"] :global {
   .radio:not(.colored) > .selector {
     margin: 0 0.5em;
   }

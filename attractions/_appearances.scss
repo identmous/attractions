@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'node_modules/attractions/_variables' as vars;
+@use "sass:color";
+@use "node_modules/attractions/_variables" as vars;
 
 @mixin text-field {
   background-color: vars.$textfield-bg;

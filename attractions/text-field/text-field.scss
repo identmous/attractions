@@ -1,9 +1,9 @@
-@use 'sass:color';
-@use '../_variables' as vars;
-@use '../_appearances';
+@use "sass:color";
+@use "../_variables" as vars;
+@use "../_appearances";
 
 .text-field {
-  input[type='search']::-webkit-search-cancel-button {
+  input[type="search"]::-webkit-search-cancel-button {
     appearance: none;
     background-image: url(vars.$x-icon);
     background-size: contain;
@@ -51,7 +51,7 @@
         padding-left: 3rem;
       }
 
-      input[type='search'] {
+      input[type="search"] {
         padding-left: 2.2em;
       }
 
@@ -93,7 +93,7 @@
       text-align: right;
     }
 
-    input[type='number'] {
+    input[type="number"] {
       appearance: textfield;
 
       &::-webkit-outer-spin-button,
@@ -211,7 +211,7 @@
     font-weight: vars.$bold-font-weight;
   }
 
-  &.no-spinner > input[type='number'] {
+  &.no-spinner > input[type="number"] {
     appearance: textfield;
 
     &::-webkit-inner-spin-button,

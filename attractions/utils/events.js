@@ -18,6 +18,6 @@ export default function events(node, args) {
           node.removeEventListener(event.name, event.handler);
         }
       }
-    },
+    }
   };
 }

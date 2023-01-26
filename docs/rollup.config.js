@@ -1,41 +1,40 @@
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import commonjs from '@rollup/plugin-commonjs';
-import svelte from 'rollup-plugin-svelte';
-import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import config from 'sapper/config/rollup.js';
-import pkg from './package.json';
+import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import commonjs from "@rollup/plugin-commonjs";
+import svelte from "rollup-plugin-svelte";
+import babel from "@rollup/plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import config from "sapper/config/rollup.js";
+import pkg from "./package.json";
 
-import alias from '@rollup/plugin-alias';
-import attractionsPkg from 'attractions/package.json';
-const svelteConfig = require('./svelte.config.js');
-import sapperEnv from 'sapper-environment';
-import 'prismjs';
-import 'prism-svelte';
+import alias from "@rollup/plugin-alias";
+import attractionsPkg from "attractions/package.json";
+const svelteConfig = require("./svelte.config.js");
+import sapperEnv from "sapper-environment";
+import "prismjs";
+import "prism-svelte";
 
 const mode = process.env.NODE_ENV;
-const dev = mode === 'development';
+const dev = mode === "development";
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) =>
-  (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
-  (warning.code === 'CIRCULAR_DEPENDENCY' &&
-    /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  (warning.code === "MISSING_EXPORT" && /'preload'/.test(warning.message)) ||
+  (warning.code === "CIRCULAR_DEPENDENCY" && /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
 
 const commonSubstitutions = {
-  'process.env.NODE_ENV': JSON.stringify(mode),
+  "process.env.NODE_ENV": JSON.stringify(mode),
   ...sapperEnv(),
-  'process.latest_version': JSON.stringify(attractionsPkg.version),
-  'process.license': JSON.stringify(attractionsPkg.license),
+  "process.latest_version": JSON.stringify(attractionsPkg.version),
+  "process.license": JSON.stringify(attractionsPkg.license)
 };
 
 const pathAlias = alias({
   entries: [
-    { find: /^src\//, replacement: __dirname + '/src/' },
-    { find: /^#root\//, replacement: __dirname + '/../' },
-  ],
+    { find: /^src\//, replacement: __dirname + "/src/" },
+    { find: /^#root\//, replacement: __dirname + "/../" }
+  ]
 });
 
 export default {
@@ -45,57 +44,57 @@ export default {
     plugins: [
       replace({
         values: {
-          'process.browser': true,
-          ...commonSubstitutions,
+          "process.browser": true,
+          ...commonSubstitutions
         },
-        preventAssignment: true,
+        preventAssignment: true
       }),
       svelte({
         ...svelteConfig,
         compilerOptions: {
           dev,
-          hydratable: true,
+          hydratable: true
         },
-        emitCss: true,
+        emitCss: true
       }),
       pathAlias,
       resolve({
         browser: true,
-        dedupe: ['svelte'],
+        dedupe: ["svelte"]
       }),
       commonjs(),
       legacy &&
         babel({
-          extensions: ['.js', '.mjs', '.html', '.svelte'],
-          babelHelpers: 'runtime',
-          exclude: ['node_modules/@babel/**'],
+          extensions: [".js", ".mjs", ".html", ".svelte"],
+          babelHelpers: "runtime",
+          exclude: ["node_modules/@babel/**"],
           presets: [
             [
-              '@babel/preset-env',
+              "@babel/preset-env",
               {
-                targets: '> 0.25%, not dead',
-              },
-            ],
+                targets: "> 0.25%, not dead"
+              }
+            ]
           ],
           plugins: [
-            '@babel/plugin-syntax-dynamic-import',
+            "@babel/plugin-syntax-dynamic-import",
             [
-              '@babel/plugin-transform-runtime',
+              "@babel/plugin-transform-runtime",
               {
-                useESModules: true,
-              },
-            ],
-          ],
+                useESModules: true
+              }
+            ]
+          ]
         }),
 
       !dev &&
         terser({
-          module: true,
-        }),
+          module: true
+        })
     ],
 
     preserveEntrySignatures: false,
-    onwarn,
+    onwarn
   },
 
   server: {
@@ -104,31 +103,29 @@ export default {
     plugins: [
       replace({
         values: {
-          'process.browser': false,
-          ...commonSubstitutions,
+          "process.browser": false,
+          ...commonSubstitutions
         },
-        preventAssignment: true,
+        preventAssignment: true
       }),
       svelte({
         ...svelteConfig,
         compilerOptions: {
           dev,
           hydratable: true,
-          generate: 'ssr',
-        },
+          generate: "ssr"
+        }
       }),
       pathAlias,
       resolve({
-        dedupe: ['svelte'],
+        dedupe: ["svelte"]
       }),
-      commonjs(),
+      commonjs()
     ],
-    external: Object.keys(pkg.dependencies).concat(
-      require('module').builtinModules
-    ),
+    external: Object.keys(pkg.dependencies).concat(require("module").builtinModules),
 
-    preserveEntrySignatures: 'strict',
-    onwarn,
+    preserveEntrySignatures: "strict",
+    onwarn
   },
 
   serviceworker: {
@@ -138,16 +135,16 @@ export default {
       resolve(),
       replace({
         values: {
-          'process.browser': true,
-          'process.env.NODE_ENV': JSON.stringify(mode),
+          "process.browser": true,
+          "process.env.NODE_ENV": JSON.stringify(mode)
         },
-        preventAssignment: true,
+        preventAssignment: true
       }),
       commonjs(),
-      !dev && terser(),
+      !dev && terser()
     ],
 
     preserveEntrySignatures: false,
-    onwarn,
-  },
+    onwarn
+  }
 };

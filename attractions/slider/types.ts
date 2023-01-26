@@ -1,16 +1,16 @@
 export type TickConfig =
-  | { mode: 'none' }
+  | { mode: "none" }
   | {
-      mode: 'steps';
+      mode: "steps";
       step: number;
       subDensity?: number;
     }
   | {
-      mode: 'values';
+      mode: "values";
       values: number[];
       subDensity?: number;
     };
-export type RangeBehavior = 'free' | 'block' | 'push';
+export type RangeBehavior = "free" | "block" | "push";
 export type SliderState = {
   value: number;
   activeHandle: number;
@@ -18,4 +18,4 @@ export type SliderState = {
   max: number;
   sliderActive: boolean;
 };
-export type Tooltips = 'active' | 'always' | 'never';
+export type Tooltips = "active" | "always" | "never";

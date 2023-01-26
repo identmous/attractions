@@ -4,5 +4,5 @@
  * @returns {"" | "s"}
  */
 export default function pluralS(amount) {
-  return amount === 1 ? '' : 's';
+  return amount === 1 ? "" : "s";
 }

@@ -1,5 +1,5 @@
-@use '../_variables' as vars;
-@use 'radio-chip';
+@use "../_variables" as vars;
+@use "radio-chip";
 
 .chip {
   position: relative;
@@ -7,7 +7,7 @@
 
   &::before {
     border: 0 solid vars.$main;
-    content: '';
+    content: "";
     height: 0.5625em;
     left: 0.9em;
     position: absolute;

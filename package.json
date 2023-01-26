@@ -16,7 +16,8 @@
     "docs:build": "pnpm run --dir docs build",
     "docs:dev": "pnpm run --dir docs dev",
     "build": "pnpm run --dir attractions build",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "workspaces": [
     "attractions",

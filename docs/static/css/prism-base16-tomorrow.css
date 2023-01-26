@@ -9,10 +9,10 @@
  */
 
 code,
-pre[class*='language-'] {
+pre[class*="language-"] {
   background: none;
   color: #4d4d4c;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 1em;
   hyphens: none;
   line-height: 1.5;
@@ -24,32 +24,32 @@ pre[class*='language-'] {
   word-wrap: normal;
 }
 
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   background: #d6d6d6;
   color: inherit;
   text-shadow: none;
 }
 
 @media print {
-  code[class*='language-'],
-  pre[class*='language-'] {
+  code[class*="language-"],
+  pre[class*="language-"] {
     text-shadow: none;
   }
 }
 
 /* Code blocks */
 
-pre[class*='language-'] {
+pre[class*="language-"] {
   margin: 0.5em 0;
   overflow: auto;
   padding: 1em;
 }
 
 :not(pre) > code,
-pre[class*='language-'] {
+pre[class*="language-"] {
   background: #fcfcfc;
   border-radius: 0.3em;
 }

@@ -9,10 +9,10 @@
  * }}
  */
 export const HorizontalAlignment = {
-  AUTO_START: 'auto-start',
-  AUTO_END: 'auto-end',
-  START: 'start',
-  END: 'end',
+  AUTO_START: "auto-start",
+  AUTO_END: "auto-end",
+  START: "start",
+  END: "end"
 };
 
 /**
@@ -26,10 +26,10 @@ export const HorizontalAlignment = {
  * }}
  */
 export const VerticalAlignment = {
-  AUTO_BOTTOM: 'auto-bottom',
-  AUTO_TOP: 'auto-top',
-  BOTTOM: 'bottom',
-  TOP: 'top',
+  AUTO_BOTTOM: "auto-bottom",
+  AUTO_TOP: "auto-top",
+  BOTTOM: "bottom",
+  TOP: "top"
 };
 
 Object.freeze(HorizontalAlignment);

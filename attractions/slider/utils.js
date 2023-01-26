@@ -9,7 +9,7 @@
  * @returns {Pick<MouseEvent, 'clientY' | 'clientX'>}
  */
 function normalizeEvent(e) {
-  if (e.type.includes('touch')) {
+  if (e.type.includes("touch")) {
     return /** @type {TouchEvent}*/ (e).touches[0];
   } else {
     return /** @type {MouseEvent}*/ (e);
@@ -54,8 +54,8 @@ export function ensureValueInRange(val, { min, max }) {
 export function getPrecision(step) {
   const stepString = step.toString();
   let precision = 0;
-  if (stepString.indexOf('.') >= 0) {
-    precision = stepString.length - stepString.indexOf('.') - 1;
+  if (stepString.indexOf(".") >= 0) {
+    precision = stepString.length - stepString.indexOf(".") - 1;
   }
   return precision;
 }
@@ -88,9 +88,8 @@ export function getSteps(step, { min, max }) {
  * @returns {number[]}
  */
 export function getTickValues(ticks, min, max) {
-  if (ticks.mode === 'steps') return getSteps(ticks.step, { min, max });
-  if (ticks.mode === 'values' && Array.isArray(ticks.values))
-    return [...ticks.values];
+  if (ticks.mode === "steps") return getSteps(ticks.step, { min, max });
+  if (ticks.mode === "values" && Array.isArray(ticks.values)) return [...ticks.values];
   return [];
 }
 
@@ -103,13 +102,11 @@ export function getTickValues(ticks, min, max) {
  * @returns {number[]}
  */
 export function getSubTickPositions(ticks, min, max, tickValues = []) {
-  if (ticks.mode === 'none') return [];
+  if (ticks.mode === "none") return [];
   const { subDensity } = ticks;
   if (!subDensity) return [];
   const step = ((max - min) / 100) * subDensity;
-  const subTicks = getSteps(step, { min, max }).filter(
-    tick => !tickValues.includes(tick)
-  );
+  const subTicks = getSteps(step, { min, max }).filter((tick) => !tickValues.includes(tick));
   return subTicks;
 }
 
@@ -123,14 +120,12 @@ export function getClosestPoint(val, { ticks, step, min, max }) {
   const points = getTickValues(ticks, min, max);
   if (step !== null) {
     const baseNum = 10 ** getPrecision(step);
-    const maxSteps = Math.floor(
-      (max * baseNum - min * baseNum) / (step * baseNum)
-    );
+    const maxSteps = Math.floor((max * baseNum - min * baseNum) / (step * baseNum));
     const steps = Math.min((val - min) / step, maxSteps);
     const closestStep = Math.round(steps) * step + min;
     points.push(closestStep);
   }
-  const diffs = points.map(point => Math.abs(val - point));
+  const diffs = points.map((point) => Math.abs(val - point));
   return points[diffs.indexOf(Math.min(...diffs))];
 }
 
@@ -164,9 +159,7 @@ export function ensureValuePrecision(val, stateWithTicks) {
   const { step } = stateWithTicks;
   const possiblePoint = getClosestPoint(val, stateWithTicks);
   const closestPoint = isFinite(possiblePoint) ? possiblePoint : 0;
-  return step === null
-    ? closestPoint
-    : parseFloat(closestPoint.toFixed(getPrecision(step)));
+  return step === null ? closestPoint : parseFloat(closestPoint.toFixed(getPrecision(step)));
 }
 
 /**

@@ -9,10 +9,8 @@ export default function accepted(references, subject) {
     return true;
   }
 
-  const referencesArray = references
-    .split(',')
-    .map(value => value.trim().toLowerCase());
-  return referencesArray.some(reference => matches(reference, subject));
+  const referencesArray = references.split(",").map((value) => value.trim().toLowerCase());
+  return referencesArray.some((reference) => matches(reference, subject));
 }
 
 /**
@@ -22,14 +20,11 @@ export default function accepted(references, subject) {
  * @returns {boolean} Whether the MIME types match
  */
 function matches(reference, subject) {
-  if (reference.startsWith('.')) {
+  if (reference.startsWith(".")) {
     return subject.name.toLowerCase().endsWith(reference);
   }
 
-  return checkMimeType(
-    reference.toLowerCase(),
-    (subject.type || '').toLowerCase()
-  );
+  return checkMimeType(reference.toLowerCase(), (subject.type || "").toLowerCase());
 }
 
 /**
@@ -41,11 +36,11 @@ function matches(reference, subject) {
  * @returns {boolean} Whether the MIME types are compatible
  */
 function checkMimeType(reference, subject) {
-  if (reference === '*' || reference === '*/*') {
+  if (reference === "*" || reference === "*/*") {
     return true;
   }
 
-  const parts = reference.split('*');
+  const parts = reference.split("*");
   if (parts.length === 1) {
     return reference === subject;
   }

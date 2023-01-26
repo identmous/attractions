@@ -12,7 +12,7 @@ Notes to self and quirks of the project's implementation in case all of the curr
 Specifically talking about how most of the components have the following line:
 
 ```scss
-@use 'node_modules/attractions/_variables';
+@use "node_modules/attractions/_variables";
 ```
 
 That path doesn't exist for us, library developers, but it does exist for the users who installed this library and are now compiling SCSS. This is done to enable zero-config installation for those users who are not interested in changing Sass variables or using them in their own stylesheets.

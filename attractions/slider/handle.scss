@@ -1,5 +1,5 @@
-@use '../_variables' as vars;
-@use 'sass:math';
+@use "../_variables" as vars;
+@use "sass:math";
 
 .handle {
   backface-visibility: hidden;

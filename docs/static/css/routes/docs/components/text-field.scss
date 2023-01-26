@@ -1,6 +1,6 @@
-@use 'attractions-theme' as vars;
+@use "attractions-theme" as vars;
 
-[slot='showcase'] :global {
+[slot="showcase"] :global {
   .text-field.outline {
     margin-top: 1.5em;
   }

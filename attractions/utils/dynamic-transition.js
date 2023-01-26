@@ -14,7 +14,7 @@ export default function dynamic(node, { transition = null, options = null }) {
     return {
       delay: 0,
       duration: 0,
-      css: () => '',
+      css: () => ""
     };
   }
 

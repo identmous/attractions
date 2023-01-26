@@ -1,7 +1,7 @@
-@use 'sass:color';
-@use 'sass:math';
-@use '../_variables' as vars;
-@use '../mixins';
+@use "sass:color";
+@use "sass:math";
+@use "../_variables" as vars;
+@use "../mixins";
 
 .switch {
   align-items: center;
@@ -23,7 +23,7 @@
 
     &::before {
       border-radius: 1.125em;
-      content: '';
+      content: "";
       height: 2.375em;
       left: 50%;
       position: absolute;
@@ -67,7 +67,7 @@
 
       &::before {
         background: vars.$disabled;
-        content: '';
+        content: "";
         height: 0.125em;
         left: 0;
         position: absolute;

@@ -13,7 +13,7 @@ export function parseDateTime(string, format, defaultValue) {
   const century = Math.floor(new Date().getFullYear() / 100);
   let isPM = false;
 
-  if (string === '') {
+  if (string === "") {
     return null;
   }
 
@@ -35,25 +35,25 @@ export function parseDateTime(string, format, defaultValue) {
       break;
     }
 
-    if (format[formatIdx + part.length] !== '%') {
+    if (format[formatIdx + part.length] !== "%") {
       break;
     }
 
     formatIdx += part.length + 1;
 
-    if (format[formatIdx] === '%') {
-      if (string[stringIdx] !== '%') {
+    if (format[formatIdx] === "%") {
+      if (string[stringIdx] !== "%") {
         return defaultValue;
       }
       stringIdx++;
-    } else if (format[formatIdx].toLowerCase() === 'p') {
+    } else if (format[formatIdx].toLowerCase() === "p") {
       const hourFormat = string.substr(stringIdx, 2).toUpperCase();
-      if (hourFormat === 'AM') {
+      if (hourFormat === "AM") {
         isPM = false;
         if (result.getHours() >= 12) {
           result.setHours(result.getHours() - 12);
         }
-      } else if (hourFormat === 'PM') {
+      } else if (hourFormat === "PM") {
         isPM = true;
         if (result.getHours() < 12) {
           result.setHours(result.getHours() + 12);
@@ -69,25 +69,25 @@ export function parseDateTime(string, format, defaultValue) {
       }
 
       switch (format[formatIdx]) {
-        case 'H':
+        case "H":
           result.setHours(parseInt(number[0]) + 12 * isPM);
           break;
-        case 'M':
+        case "M":
           result.setMinutes(number[0]);
           break;
-        case 'S':
+        case "S":
           result.setSeconds(number[0]);
           break;
-        case 'd':
+        case "d":
           result.setDate(number[0]);
           break;
-        case 'm':
+        case "m":
           result.setMonth(number[0] - 1);
           break;
-        case 'y':
+        case "y":
           result.setFullYear(century * 100 + parseInt(number[0]));
           break;
-        case 'Y':
+        case "Y":
           result.setFullYear(number[0]);
           break;
       }
@@ -123,16 +123,16 @@ export function formatDateTime(datetime, format) {
   }
 
   return format
-    .replace('%Y', datetime.getFullYear())
-    .replace('%y', (datetime.getFullYear() % 100).toString().padStart(2, '0'))
-    .replace('%m', (datetime.getMonth() + 1).toString().padStart(2, '0'))
-    .replace('%d', datetime.getDate().toString().padStart(2, '0'))
-    .replace('%H', hours.toString().padStart(2, '0'))
-    .replace('%M', datetime.getMinutes().toString().padStart(2, '0'))
-    .replace('%S', datetime.getSeconds().toString().padStart(2, '0'))
-    .replace('%p', datetime.getHours() < 12 ? 'am' : 'pm')
-    .replace('%P', datetime.getHours() < 12 ? 'AM' : 'PM')
-    .replace('%%', '%');
+    .replace("%Y", datetime.getFullYear())
+    .replace("%y", (datetime.getFullYear() % 100).toString().padStart(2, "0"))
+    .replace("%m", (datetime.getMonth() + 1).toString().padStart(2, "0"))
+    .replace("%d", datetime.getDate().toString().padStart(2, "0"))
+    .replace("%H", hours.toString().padStart(2, "0"))
+    .replace("%M", datetime.getMinutes().toString().padStart(2, "0"))
+    .replace("%S", datetime.getSeconds().toString().padStart(2, "0"))
+    .replace("%p", datetime.getHours() < 12 ? "am" : "pm")
+    .replace("%P", datetime.getHours() < 12 ? "AM" : "PM")
+    .replace("%%", "%");
 }
 
 /**
@@ -143,7 +143,7 @@ export function formatDateTime(datetime, format) {
  */
 export function getWeekdays(locale, firstWeekday) {
   const weekdayFormatter = new Intl.DateTimeFormat(locale, {
-    weekday: 'short',
+    weekday: "short"
   });
   const anchor = new Date(1970, 0, 1); // Initially set to the UNIX epoch – Thursday
   const mondayOffset = 5; // How many days to add to the epoch to get a Monday
@@ -222,7 +222,7 @@ export function datesLessEqual(date1, date2) {
  * @returns {boolean}
  */
 export function dateIncluded(date, dateRanges) {
-  return dateRanges.some(dateOrRange => {
+  return dateRanges.some((dateOrRange) => {
     if (isDate(dateOrRange)) {
       return datesEqual(dateOrRange, date);
     }
@@ -247,9 +247,7 @@ export function getCalendar(month, year, firstWeekday, disabledDates = []) {
   const dayCursor = new Date(year, month, 1);
 
   // Offset the start of the month to the closest left `firstWeekday`
-  dayCursor.setDate(
-    1 - ((daysInWeek + dayCursor.getDay() - firstWeekday) % daysInWeek)
-  );
+  dayCursor.setDate(1 - ((daysInWeek + dayCursor.getDay() - firstWeekday) % daysInWeek));
 
   do {
     const week = [];
@@ -257,7 +255,7 @@ export function getCalendar(month, year, firstWeekday, disabledDates = []) {
       week.push({
         value: new Date(dayCursor.valueOf()),
         outside: dayCursor.getMonth() !== month,
-        disabled: dateIncluded(dayCursor, disabledDates),
+        disabled: dateIncluded(dayCursor, disabledDates)
       });
       dayCursor.setDate(dayCursor.getDate() + 1);
     }
@@ -279,11 +277,7 @@ export function applyDate(source, destination) {
   if (source == null || destination == null) {
     return source;
   }
-  destination.setFullYear(
-    source.getFullYear(),
-    source.getMonth(),
-    source.getDate()
-  );
+  destination.setFullYear(source.getFullYear(), source.getMonth(), source.getDate());
   return destination;
 }
 
@@ -299,11 +293,7 @@ export function applyTime(source, destination) {
   if (source == null || destination == null) {
     return source;
   }
-  destination.setHours(
-    source.getHours(),
-    source.getMinutes(),
-    source.getSeconds()
-  );
+  destination.setHours(source.getHours(), source.getMinutes(), source.getSeconds());
   return destination;
 }
 

@@ -1,1 +1,1 @@
-export { HorizontalAlignment, VerticalAlignment } from './dropdown-alignment';
+export { HorizontalAlignment, VerticalAlignment } from "./dropdown-alignment";

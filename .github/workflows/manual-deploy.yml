@@ -3,12 +3,12 @@ on:
   workflow_dispatch:
     inputs:
       prefix:
-        description: 'The URL prefix to deploy the docs to'
+        description: "The URL prefix to deploy the docs to"
         required: false
       keep_files:
-        description: 'Keep other deployments on the branch (true/false)?'
+        description: "Keep other deployments on the branch (true/false)?"
         required: false
-        default: 'true'
+        default: "true"
 
 jobs:
   deploy-docs:
@@ -26,7 +26,7 @@ jobs:
       - name: Set up Node 14 📦
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
 
       - name: Cache pnpm modules 🗄
         uses: actions/cache@v2

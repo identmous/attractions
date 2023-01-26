@@ -10,17 +10,17 @@ export default function callOnSight(node, { callback, args = [] }) {
   let observer = null;
 
   function onIntersect(entries, _observer) {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         callback(...args);
       }
     });
   }
 
-  if (typeof IntersectionObserver !== 'undefined') {
+  if (typeof IntersectionObserver !== "undefined") {
     observer = new IntersectionObserver(onIntersect, {
       root: null,
-      threshold: 0.5,
+      threshold: 0.5
     });
     observer.observe(node);
   }
@@ -30,6 +30,6 @@ export default function callOnSight(node, { callback, args = [] }) {
       if (observer != null) {
         observer.disconnect();
       }
-    },
+    }
   };
 }

@@ -1,9 +1,9 @@
-@use 'attractions-theme' as vars;
+@use "attractions-theme" as vars;
 
 .preview {
   align-items: center;
   display: flex;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
 
   .color {
     border: 1px solid transparent;

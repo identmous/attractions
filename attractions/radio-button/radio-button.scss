@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use '../_variables' as vars;
-@use '../_mixins';
+@use "sass:color";
+@use "../_variables" as vars;
+@use "../_mixins";
 
 .radio {
   align-items: center;
@@ -9,7 +9,7 @@
   font-family: vars.$font;
   position: relative;
 
-  > input[type='radio'] {
+  > input[type="radio"] {
     @include mixins.hide-accessible;
   }
 
@@ -23,7 +23,7 @@
 
     &::after {
       border-radius: 50%;
-      content: '';
+      content: "";
       height: 2.25em;
       left: 50%;
       position: absolute;
@@ -35,7 +35,7 @@
 
   > input:checked + .selector::before {
     border-radius: 50%;
-    content: '';
+    content: "";
     height: 0.5em;
     left: 50%;
     position: absolute;

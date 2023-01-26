@@ -4,5 +4,5 @@ function capitalize(word) {
 }
 
 export default function segmentToName(segment) {
-  return segment.split('-').map(capitalize).join(' ');
+  return segment.split("-").map(capitalize).join(" ");
 }

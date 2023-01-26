@@ -6,7 +6,7 @@ on:
     types:
       - opened
     paths:
-      - 'attractions/package.json'
+      - "attractions/package.json"
 
 jobs:
   tag-issue:

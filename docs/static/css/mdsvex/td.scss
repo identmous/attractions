@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'attractions-theme' as vars;
+@use "sass:color";
+@use "attractions-theme" as vars;
 
 td {
   border: 0 solid color.adjust(vars.$main, $alpha: -0.75);

@@ -1,4 +1,4 @@
-import { calcPercentOfRange } from './utils';
+import { calcPercentOfRange } from "./utils";
 /**
  * An action that sets the position styles of the slider's handle depending on the slider value.
  * @param {HTMLElement} node The handle element
@@ -10,16 +10,16 @@ export function handleStyle(node, props) {
    */
   function applyStyles({ vertical, value, active }) {
     if (vertical) {
-      node.style.setProperty('bottom', `${value}%`);
+      node.style.setProperty("bottom", `${value}%`);
     } else {
-      node.style.setProperty('left', `${value}%`);
+      node.style.setProperty("left", `${value}%`);
     }
-    node.style.setProperty('z-index', `${active ? 3 : 2}`);
+    node.style.setProperty("z-index", `${active ? 3 : 2}`);
   }
 
   applyStyles(props);
   return {
-    update: applyStyles,
+    update: applyStyles
   };
 }
 
@@ -42,17 +42,17 @@ export function rangeStyle(node, props) {
       node.style.removeProperty(property);
     }
     styles.clear();
-    const offsets = value.map(v => calcPercentOfRange(v, props));
+    const offsets = value.map((v) => calcPercentOfRange(v, props));
     // if offsets have crossed over
     offsets.sort((a, b) => a - b);
 
     // this offset is the percent length of the track
     const offset = isRange ? offsets[1] - offsets[0] : offsets[0];
-    const sizeKey = vertical ? 'height' : 'width';
+    const sizeKey = vertical ? "height" : "width";
     styles.set(sizeKey, `${offset}%`);
 
     if (isRange) {
-      const offsetKey = vertical ? 'bottom' : 'left';
+      const offsetKey = vertical ? "bottom" : "left";
       styles.set(offsetKey, `${offsets[0]}%`);
     }
     for (const [property, value] of styles.entries()) {
@@ -63,6 +63,6 @@ export function rangeStyle(node, props) {
   applyStyles(props);
 
   return {
-    update: applyStyles,
+    update: applyStyles
   };
 }

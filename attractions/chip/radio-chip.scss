@@ -1,7 +1,7 @@
-@use 'sass:color';
-@use '../_variables' as vars;
-@use '../mixins';
-@use 'chip';
+@use "sass:color";
+@use "../_variables" as vars;
+@use "../mixins";
+@use "chip";
 
 .input-chip > input {
   @include mixins.hide-accessible;

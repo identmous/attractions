@@ -1,1 +1,1 @@
-export { default as PopoverPositions } from './popover-positions.js';
+export { default as PopoverPositions } from "./popover-positions.js";

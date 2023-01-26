@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'attractions-theme' as vars;
+@use "sass:color";
+@use "attractions-theme" as vars;
 
 $border-radius: 0.5em;
 
@@ -20,7 +20,7 @@ $border-radius: 0.5em;
       }
     }
 
-    > [slot='showcase'] {
+    > [slot="showcase"] {
       border: 0 solid color.adjust(vars.$main, $alpha: -0.75);
       border-bottom-width: 1px;
       overflow-x: auto;
@@ -39,7 +39,7 @@ $border-radius: 0.5em;
       border-radius: $border-radius;
       overflow-x: auto;
 
-      > [slot='source'] {
+      > [slot="source"] {
         background: #fcfcfc;
         display: flex;
         height: 100%;
@@ -66,7 +66,7 @@ $border-radius: 0.5em;
         }
       }
 
-      > [slot='showcase'] {
+      > [slot="showcase"] {
         border-bottom-left-radius: $border-radius;
         border-top-left-radius: $border-radius;
         border-width: 1px;

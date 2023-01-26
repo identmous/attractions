@@ -2,7 +2,7 @@ name: Deploy PR docs to GitHub Pages
 on:
   workflow_run:
     workflows:
-      - 'Build docs from a pull request'
+      - "Build docs from a pull request"
     types:
       - completed
 
@@ -41,8 +41,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script:
-            | # yeah, I know it's weird how you get PR comments with `.issues`
+          script: | # yeah, I know it's weird how you get PR comments with `.issues`
             const prComments = (await github.issues.listComments({
               issue_number: ${{ env.PR_NUMBER }},
               owner: context.repo.owner,

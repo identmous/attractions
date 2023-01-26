@@ -1,4 +1,4 @@
-@use '../_variables' as vars;
+@use "../_variables" as vars;
 
 .badge {
   position: relative;
@@ -7,7 +7,7 @@
     background-color: vars.$badge-default;
     border-radius: 50%;
     box-shadow: vars.$shadow-raised;
-    content: '';
+    content: "";
     height: 0.625em;
     position: absolute;
     right: -0.125em;

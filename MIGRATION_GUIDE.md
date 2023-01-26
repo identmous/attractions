@@ -15,8 +15,8 @@ Once your code is ready for Sass modules, replace Node Sass (`node-sass`) with D
 Update your `rollup.config.js` to use the new Attractions importers:
 
 ```js
-import autoPreprocess from 'svelte-preprocess';
-import makeAttractionsImporter from 'attractions/importer.js';
+import autoPreprocess from "svelte-preprocess";
+import makeAttractionsImporter from "attractions/importer.js";
 
 const preprocessChain = [
   autoPreprocess({
@@ -26,12 +26,12 @@ const preprocessChain = [
         //   provide the path to it here.
         // If it was empty, you may delete it, omit this parameter
         //   and call the function with no arguments.
-        themeFile: './static/css/_attractions-theme.scss',
+        themeFile: "./static/css/_attractions-theme.scss"
       }),
 
-      includePaths: ['./static/css'],
-    },
-  }),
+      includePaths: ["./static/css"]
+    }
+  })
 ];
 ```
 
@@ -40,8 +40,8 @@ Lastly, if your `_attractions-theme.scss` had any variable overrides, move them 
 Before:
 
 ```scss
-@import '_attractions-theme.scss';
-$font: 'Open Sans', sans-serif;
+@import "_attractions-theme.scss";
+$font: "Open Sans", sans-serif;
 $main: green;
 $my-custom-variable: 1px;
 ```

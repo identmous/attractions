@@ -4,6 +4,6 @@
  * @returns {string} The file extension (in upper case)
  */
 export default function formatFileType(filename) {
-  const fragments = filename.split('.');
+  const fragments = filename.split(".");
   return fragments[fragments.length - 1].toUpperCase();
 }
