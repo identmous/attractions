@@ -1,5 +1,5 @@
 @use 'sass:color';
-@use 'node_modules/attractions/_variables' as vars;
+@use '../_variables' as vars;
 @use '../_mixins';
 
 $hover-color: color.mix(#fff, vars.$main, 60%);
