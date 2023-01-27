@@ -1,6 +1,6 @@
 @use "sass:color";
-@use "attractions-theme" as vars;
-@use "global";
+@use "../attractions-theme" as vars;
+@use "../global";
 
 $mobile-top-padding: 2.4em;
 
