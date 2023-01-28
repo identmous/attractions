@@ -24,6 +24,7 @@
   textarea {
     @include appearances.text-field;
     @include appearances.text-field-input;
+    color: vars.$main-text;
 
     &:focus {
       @include appearances.text-field-focused;
