@@ -25,6 +25,7 @@
     @include appearances.text-field;
     @include appearances.text-field-input;
     color: vars.$main-text;
+    resize: none;
 
     &:focus {
       @include appearances.text-field-focused;
@@ -37,7 +38,12 @@
   }
 
   textarea {
-    height: 6em;
+    @media only screen and (min-width: 1024px) {
+      height: 11em;
+      width: 26em;
+    }
+    height: 35vh;
+    width: 85vw;
     padding: 0.75em 0.625em 0.0625em;
   }
 

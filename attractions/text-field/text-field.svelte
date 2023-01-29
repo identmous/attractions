@@ -144,6 +144,11 @@
       on:blur={(e) => dispatch("blur", { nativeEvent: e })}
       use:eventsAction={events}
       {...$$restProps} />
+    {#if error}
+      <p class={classes("error", errorClass)}>
+        <slot name="error">{error}</slot>
+      </p>
+    {/if}
   {:else}
     <input
       {id}

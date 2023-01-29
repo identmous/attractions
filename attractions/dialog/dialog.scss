@@ -1,11 +1,14 @@
 @use "../_variables" as vars;
 
 .dialog {
-  background-color: #fff;
+  background-color: vars.$background;
   border-radius: vars.$dialog-radius;
   box-shadow: vars.$shadow-raised;
   padding: 1.4em 2em;
   position: relative;
+  @media not screen and (min-width: 1024px) {
+    height: 90vh;
+  }
 
   .title {
     color: vars.$main;
