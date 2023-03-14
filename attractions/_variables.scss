@@ -1,6 +1,7 @@
 @use "sass:color";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap");
 
-$font: "Ubuntu", Helvetica, Arial, sans-serif !default;
+$font: "Noto Sans JP", Helvetica, Arial, sans-serif !default;
 
 $main: #4ab9a9 !default;
 $background: #121212 !default;
@@ -16,7 +17,7 @@ $badge-default: #ff5757 !default;
 $light-contrast: #333 !default;
 $textfield-bg: #212121 !default;
 $textfield-bg-error: #041111 !default;
-$textfield-border: color.adjust(#000, $alpha: -0.58) !default;
+$textfield-border: color.adjust(#fff, $alpha: -0.58) !default;
 $textfield-item: #7a7a7a !default;
 $off-state: #aaa !default;
 $chip-bg: color.adjust(#000, $alpha: -0.92) !default;
