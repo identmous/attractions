@@ -5,11 +5,12 @@ nav.left {
   display: none;
 
   @media only screen and (min-width: 1024px) {
+    position: fixed;
+    height: 100%;
     border-right: 1px solid color.adjust(vars.$main, $alpha: -0.75);
     display: block;
-    margin-right: 3em;
-    min-width: 13em;
-    padding: 0.5em 0.5em 0.5em 0;
+    min-width: 15em;
+    padding: 2em 3em 0.5em 0;
 
     :global .btn {
       margin-bottom: 0.25em;
@@ -37,11 +38,13 @@ nav.right {
   display: none;
 
   @media only screen and (min-width: 1024px) {
+    height: 100%;
+    position: fixed;
+    right: 8vw;
     border-left: 1px solid color.adjust(vars.$main, $alpha: -0.75);
     display: block;
-    margin-left: 3em;
-    min-width: 13em;
-    padding: 0.5em 0 0.5em 0.5em;
+    min-width: 15em;
+    padding: 2em 0 0.5em 3em;
 
     :global .btn {
       margin-bottom: 0.25em;
@@ -62,5 +65,14 @@ nav.right {
         padding-right: 0.5em;
       }
     }
+  }
+}
+
+nav.wrapper {
+  display: none;
+  @media only screen and (min-width: 1024px) {
+    display: block;
+    min-width: 15em;
+    padding: 0.5em 0 0.5em 3em;
   }
 }
